@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Proyecto_CRUD"
         tools:targetApi="31">
         <activity
+            android:name=".ListarTalleres"
+            android:exported="false" />
+        <activity
+            android:name=".CrearTaller"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
