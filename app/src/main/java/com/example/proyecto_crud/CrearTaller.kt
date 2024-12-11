@@ -1,5 +1,6 @@
 package com.example.proyecto_crud
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -7,25 +8,38 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import io.appwrite.Client
+import io.appwrite.ID
+import io.appwrite.models.InputFile
+import io.appwrite.services.Storage
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CrearTaller : AppCompatActivity() {
-    lateinit var boton_crear: AppCompatButton
-    lateinit var boton_volver: AppCompatButton
-    lateinit var nombre: EditText
-    lateinit var ciudad: EditText
+    private lateinit var boton_crear: AppCompatButton
+    private lateinit var boton_volver: AppCompatButton
+    private lateinit var nombre: EditText
+    private lateinit var ciudad: EditText
     private lateinit var logo: ImageView
-    lateinit var fundacion: EditText
+    private lateinit var fundacion: EditText
 
-    private var url_logo: Uri? = null
+     //Firebase
     private lateinit var database: DatabaseReference
+    //private lateinit var storage: StorageReference
+    private var url_logo: Uri? = null
+
+    //AppWriteStorage
+    private lateinit var id_projecto: String
+    private lateinit var id_bucket: String
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,15 +51,24 @@ class CrearTaller : AppCompatActivity() {
         nombre = findViewById(R.id.nombre)
         ciudad = findViewById(R.id.ciudad)
         fundacion = findViewById(R.id.fundacion)
+        logo = findViewById(R.id.logo)
+
+        var activity = this
+        //firebase
         database = FirebaseDatabase.getInstance().reference
-        val listartaller = Utile.obtenerListaTaller(database, this)
+
+        //AppWriteStorage
+        id_projecto="6759d7920012485d1e95"
+        id_bucket="6759d837002a69ef194d"
+
+        val client = Client()
+            .setEndpoint("https://cloud.appwrite.io/v1")    // Your API Endpoint
+            .setProject(id_projecto)
+//        val listartaller = Utile.obtenerListaTaller(database, this)
+        val storage = Storage(client)
 
 
-        boton_volver.setOnClickListener {
-            finish()
-        }
-
-
+        var lista_taller = Util.obtenerListaTaller(database, this)
         boton_crear.setOnClickListener {
 
             if (nombre.text.isEmpty() || ciudad.text.isEmpty()
@@ -60,12 +83,14 @@ class CrearTaller : AppCompatActivity() {
                     .toInt() < 1500
             ) {
                 Toast.makeText(this, "Año de fundación no válido", Toast.LENGTH_SHORT).show()
-            }else if (Utile.existetaller(listartaller, nombre.text.toString())) {
+            } else if (Util.existeTaller(
+                    lista_taller,
+                    nombre.text.toString())
+            ) {
+                Toast.makeText(this, "Taller ya existe", Toast.LENGTH_SHORT).show()
+            } else {
 
-                Toast.makeText(this, "Ya existe un taller con ese nombre", Toast.LENGTH_SHORT)}
-            else {
-
-                val identificador_taller = database.child("nba").child("Talleres").push().key
+                val identificador_taller = database.child("Motor").child("Talleres").push().key
 
                 GlobalScope.launch(Dispatchers.IO) {
                     val inputStream = contentResolver.openInputStream(url_logo!!)
@@ -77,24 +102,51 @@ class CrearTaller : AppCompatActivity() {
                                 input.copyTo(output)
                             }
                         }
-                        // tenemos un archivo temporal con la imagen
-
+                        InputFile.fromFile(tempFile) // tenemos un archivo temporal con la imagen
                     }
+                    val identificadorFile = ID.unique()
+                    val file = storage.createFile(
+                        bucketId = id_bucket,
+                        fileId = identificadorFile,
+                        file = fileImpostor,
+                    )
 
+                    var logo =
+                        "https://cloud.appwrite.io/v1/storage/buckets/$id_bucket/files/$identificadorFile/preview?project=$id_projecto"
 
+                    val taller = Taller(
+                        identificador_taller,
+                        nombre.text.toString(),
+                        ciudad.text.toString(),
+                        fundacion.text.toString().toInt(),
+                        logo,
+                        identificadorFile
+                    )
+                    Util.escribirTaller(database, identificador_taller, taller)
+                    Util.tostadaCorrutina(
+                        activity, applicationContext,
+                        "Logo descargado con éxito"
+                    )
                 }
                 finish()
             }
         }
+        boton_volver.setOnClickListener {
+            finish()
+        }
 
+        logo.setOnClickListener {
+            accesoGaleria.launch("image/*")
+        }
+        }
+    private val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
+    { uri: Uri? ->
+        if (uri != null) {
+            url_logo = uri
+            logo.setImageURI(url_logo)
+        }
+    }
 
     }
 
-//    val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
-//    { uri: Uri? ->
-//        if (uri != null) {
-//            url_logo = uri
-//            logo.setImageURI(url_logo)
-//        }
-//    }
-}
+

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "265106619542",
+    "firebase_url": "https://crud-francisco-requena-sanchez-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "crud-francisco-requena-sanchez",
+    "storage_bucket": "crud-francisco-requena-sanchez.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265106619542:android:c95d0da86ffe1cc6a2d6b7",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_crud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDufCv1BoVBrcPo2TeZQ2XF_ddQINrN96s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

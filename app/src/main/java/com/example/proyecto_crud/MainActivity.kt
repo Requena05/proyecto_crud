@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         listarTalleres.setOnClickListener {
-            val intent = Intent(this, ListarTalleres::class.java)
-            startActivity(intent)
-
+        val intent=Intent(this, ListarTalleresActivity2::class.java)
         }
     }
 }
