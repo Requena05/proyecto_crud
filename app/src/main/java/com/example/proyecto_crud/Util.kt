@@ -56,12 +56,12 @@ class Util {
         }
 
         fun animacion_carga(contexto: Context): CircularProgressDrawable {
-            val animacion = CircularProgressDrawable(contexto)
-            animacion.strokeWidth = 5f
-            animacion.centerRadius = 30f
-            animacion.start()
+            val animacioon = CircularProgressDrawable(contexto)
+            animacioon.strokeWidth = 5f
+            animacioon.centerRadius = 30f
+            animacioon.start()
 
-            return animacion
+            return animacioon
         }
 
         val transicion = DrawableTransitionOptions.withCrossFade(500)

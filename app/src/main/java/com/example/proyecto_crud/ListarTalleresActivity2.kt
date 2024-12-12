@@ -1,13 +1,21 @@
 package com.example.proyecto_crud
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ListarTalleresActivity2 : AppCompatActivity() {
     private lateinit var volver: Button
@@ -19,5 +27,33 @@ class ListarTalleresActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_listar_talleres2)
+        volver=findViewById(R.id.volver_inicio)
+        recycler=findViewById(R.id.lista_talleres)
+        db_ref=FirebaseDatabase.getInstance().reference
+        lista= mutableListOf()
+        db_ref.child("Motor")
+            .child("Talleres").addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                lista.clear()
+                snapshot.children.forEach{hijo:DataSnapshot?->
+                    val pojo_taller=hijo?.getValue(Taller::class.java)
+                    lista.add(pojo_taller!!)
+                }
+                recycler.adapter?.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println(error.message)
+            }
+        })
+    adaptador= AdaptadorTaller(lista)
+    recycler.adapter=adaptador
+    recycler.setHasFixedSize(true)
+    recycler.layoutManager=LinearLayoutManager(applicationContext)
+    volver.setOnClickListener{
+        finish()
     }
+    }
+
 }

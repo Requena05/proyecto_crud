@@ -8,5 +8,6 @@ data class Taller(
     var ciudad: String? = "",
     var fundacion: Int? = 0,
     var url_logo: String? = "",
-    var id_logo: String? = ""
+    var id_logo: String? = "",
+    var rating: Double? = 0.0
 ):Serializable

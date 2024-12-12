@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,6 +31,7 @@ class CrearTaller : AppCompatActivity() {
     private lateinit var ciudad: EditText
     private lateinit var logo: ImageView
     private lateinit var fundacion: EditText
+    private lateinit var rating: RatingBar
 
      //Firebase
     private lateinit var database: DatabaseReference
@@ -52,6 +54,7 @@ class CrearTaller : AppCompatActivity() {
         ciudad = findViewById(R.id.ciudad)
         fundacion = findViewById(R.id.fundacion)
         logo = findViewById(R.id.logo)
+        rating = findViewById(R.id.estrellas)
 
         var activity = this
         //firebase
@@ -120,7 +123,8 @@ class CrearTaller : AppCompatActivity() {
                         ciudad.text.toString(),
                         fundacion.text.toString().toInt(),
                         logo,
-                        identificadorFile
+                        identificadorFile,
+                        rating.toString().toDouble(),
                     )
                     Util.escribirTaller(database, identificador_taller, taller)
                     Util.tostadaCorrutina(
