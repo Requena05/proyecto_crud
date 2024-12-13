@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +31,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         val fundacion: TextView = itemView.findViewById(R.id.item_fundacion)
         val editar: ImageView = itemView.findViewById(R.id.item_editar)
         val borrar: ImageView = itemView.findViewById(R.id.item_borrar)
-        val rating: TextView = itemView.findViewById(R.id.estrellas)
+        val rating: RatingBar = itemView.findViewById(R.id.estrellas)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TallerViewHolder {
@@ -46,7 +47,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         holder.nombre.text=taller_actual.nombre
         holder.ciudad.text=taller_actual.ciudad
         holder.fundacion.text=taller_actual.fundacion.toString()
-        holder.rating.text=taller_actual.rating.toString()
+        holder.rating.rating=taller_actual.rating!!
 
         val URL:String?=when(taller_actual.url_logo){
             ""->null

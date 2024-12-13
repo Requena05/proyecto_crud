@@ -33,6 +33,7 @@ class CrearTaller : AppCompatActivity() {
     private lateinit var fundacion: EditText
     private lateinit var rating: RatingBar
 
+
      //Firebase
     private lateinit var database: DatabaseReference
     //private lateinit var storage: StorageReference
@@ -91,8 +92,9 @@ class CrearTaller : AppCompatActivity() {
                     nombre.text.toString())
             ) {
                 Toast.makeText(this, "Taller ya existe", Toast.LENGTH_SHORT).show()
+            }else if (rating.rating <=0) {
+                Toast.makeText(this, "Seleccione una calificación", Toast.LENGTH_SHORT).show()
             } else {
-
                 val identificador_taller = database.child("Motor").child("Talleres").push().key
 
                 GlobalScope.launch(Dispatchers.IO) {
@@ -112,6 +114,7 @@ class CrearTaller : AppCompatActivity() {
                         bucketId = id_bucket,
                         fileId = identificadorFile,
                         file = fileImpostor,
+
                     )
 
                     var logo =
@@ -124,7 +127,7 @@ class CrearTaller : AppCompatActivity() {
                         fundacion.text.toString().toInt(),
                         logo,
                         identificadorFile,
-                        rating.toString().toDouble(),
+                        rating.rating
                     )
                     Util.escribirTaller(database, identificador_taller, taller)
                     Util.tostadaCorrutina(

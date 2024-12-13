@@ -53,14 +53,15 @@ class EditarTallerActivity2 : AppCompatActivity() {
         fundacion = findViewById(R.id.fundacion)
         boton_modificar = findViewById(R.id.boton_modificar)
         boton_volver = findViewById(R.id.boton_volver)
-        database = FirebaseDatabase.getInstance().reference
         rating = findViewById(R.id.estrellas)
+        database = FirebaseDatabase.getInstance().reference
         //storage = FirebaseStorage.getInstance().reference
 
         taller = intent.getSerializableExtra("Taller") as Taller
 
         nombre.setText(taller.nombre)
         ciudad.setText(taller.ciudad)
+        rating.rating=taller.rating!!
         fundacion.setText(taller.fundacion.toString())
         id_projecto="6759d7920012485d1e95"
         id_bucket="6759d837002a69ef194d"
@@ -69,7 +70,6 @@ class EditarTallerActivity2 : AppCompatActivity() {
             .setProject(id_projecto)
         //val storage=FirebaseStorage.getInstance()
         //val storage=Firebase.storage.reference
-        taller.rating=rating.rating.toDouble()
         val storage=Storage(client)
         var activity=this
         Glide.with(applicationContext)
@@ -84,7 +84,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
         lista_taller=Util.obtenerListaTaller(database,this)
         boton_modificar.setOnClickListener {
             if (nombre.text.isEmpty() || ciudad.text.isEmpty()
-                || fundacion.text.isEmpty()
+                || fundacion.text.isEmpty() || taller.rating==null
             ) {
                 Toast.makeText(
                     this,
@@ -134,7 +134,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
                             "https://cloud.appwrite.io/v1/storage/buckets/$id_bucket/files/$identificadorFile/preview?project=$id_projecto"
                         taller.url_logo=logo
                     }else if(nombre.text.toString()!=taller.nombre || ciudad.text.toString()!= taller.ciudad ||
-                        fundacion.text.toString().toInt()!=taller.fundacion!!){
+                        fundacion.text.toString().toInt()!=taller.fundacion!! || rating.rating!=taller.rating!!){
                         val Taller=Taller(
                             identificador_taller,
                             nombre.text.toString(),
@@ -142,7 +142,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
                             fundacion.text.toString().toInt(),
                             taller.url_logo,
                             taller.id_logo,
-                            rating.rating.toDouble()
+                            rating.rating
                         )
                         Util.escribirTaller(database,identificador_taller!!,Taller)
                         Util.tostadaCorrutina(activity,applicationContext,

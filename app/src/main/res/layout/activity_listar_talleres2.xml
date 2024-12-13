@@ -9,18 +9,40 @@
     android:background="#FFEBEE"
     android:padding="15dp"
     >
+        <LinearLayout
+            android:id="@+id/buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/lista_talleres"
+            android:background="@color/white"
+            android:elevation="5dp"
+            >
+            <Spinner
+                android:id="@+id/filtrar"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                tools:text="Filtrar"
+                android:theme="@style/CardView"
+                android:background="#E8EAF6"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_talleres"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="490dp"
         android:padding="5dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@id/volver_inicio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buscar"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/cartastaller" />
 

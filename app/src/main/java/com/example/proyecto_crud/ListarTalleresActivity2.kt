@@ -3,8 +3,10 @@ package com.example.proyecto_crud
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,12 +25,17 @@ class ListarTalleresActivity2 : AppCompatActivity() {
     private lateinit var lista:MutableList<Taller>
     private lateinit var db_ref: DatabaseReference
     private lateinit var adaptador: AdaptadorTaller
+    private lateinit var filtrar: Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_listar_talleres2)
         volver=findViewById(R.id.volver_inicio)
         recycler=findViewById(R.id.lista_talleres)
+        filtrar=findViewById(R.id.filtrar)
+        //Rellenar el spinner con datos
+         val lista_filtros=resources.getStringArray(R.array.filtros)
+        filtrar.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,lista_filtros)
         db_ref=FirebaseDatabase.getInstance().reference
         lista= mutableListOf()
         db_ref.child("Motor")
@@ -39,6 +46,24 @@ class ListarTalleresActivity2 : AppCompatActivity() {
                 snapshot.children.forEach{hijo:DataSnapshot?->
                     val pojo_taller=hijo?.getValue(Taller::class.java)
                     lista.add(pojo_taller!!)
+                }
+                filtrar.setOnClickListener {
+                    when(filtrar.selectedItemPosition){
+                        0->{
+                            lista.sortBy { it.rating }
+                        }
+                        1->{
+                            lista.sortBy { it.fundacion }
+                            lista.reverse()
+                        }
+                        2->{
+                            lista.sortBy { it.fundacion }
+                        }
+                        3->{
+                            lista.sortBy { it.fundacion }
+                        }
+                    }
+
                 }
                 recycler.adapter?.notifyDataSetChanged()
             }

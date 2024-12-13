@@ -9,5 +9,6 @@ data class Taller(
     var fundacion: Int? = 0,
     var url_logo: String? = "",
     var id_logo: String? = "",
-    var rating: Double? = 0.0
+    var rating: Float? = 0.0f,
+    var fecha_creado:String?=""
 ):Serializable

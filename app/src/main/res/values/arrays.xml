@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filtros">
+        <item>Filtrar por rating</item>
+        <item>Filtrar en orden ascendente</item>
+        <item>Filtrar en orden descendente</item>
+        <item>Filtrar por antiguedad</item>
+    </string-array>
+</resources>
