@@ -10,5 +10,6 @@ data class Taller(
     var url_logo: String? = "",
     var id_logo: String? = "",
     var rating: Float? = 0.0f,
-    var fecha_creado:String?=""
+    var fecha_creado:String?="",
+    var antiguedad:String?=""
 ):Serializable

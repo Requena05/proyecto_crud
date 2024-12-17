@@ -58,6 +58,7 @@
                 android:textSize="20dp"
                 android:fontFamily="serif-monospace"
                 android:textFontWeight="900"
+                android:textColor="@color/black"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -71,6 +72,7 @@
                 android:textSize="20dp"
                 android:fontFamily="serif-monospace"
                 android:textFontWeight="900"
+                android:textColor="@color/black"
                 />
 
         </LinearLayout>
