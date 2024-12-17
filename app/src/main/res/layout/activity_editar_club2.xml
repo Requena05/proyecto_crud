@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/estrellas"
         android:layout_margin="30dp"
         android:background="@drawable/bordebototn"
-        android:text="Modificar Club"
+        android:text="Modificar Taller"
         android:textColor="@color/black"
         />
     <androidx.appcompat.widget.AppCompatButton

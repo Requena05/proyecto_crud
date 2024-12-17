@@ -43,6 +43,8 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
     override fun getItemCount()=lista_filtrada.size
 
     override fun onBindViewHolder(holder: TallerViewHolder, position: Int) {
+        val id_projecto="6759d7920012485d1e95"
+        val id_bucket="6759d837002a69ef194d"
         val taller_actual=lista_filtrada[position]
         holder.nombre.text=taller_actual.nombre
         holder.ciudad.text=taller_actual.ciudad
@@ -67,8 +69,12 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         }
         holder.borrar.setOnClickListener{
             val db_ref=FirebaseDatabase.getInstance().reference
-            val id_projecto="6759d7920012485d1e95"
-            val id_bucket="6759d837002a69ef194d"
+
+            db_ref.child("Motor").child("Talleres").child(taller_actual.id_logo!!).removeValue()
+                .addOnSuccessListener {
+                    val imageID=
+                }
+            //cuando se borra un taller se borra tambien sus datos en firebase
 
             val client= Client()
                 .setEndpoint("https://cloud.appwrite.io/v1")
