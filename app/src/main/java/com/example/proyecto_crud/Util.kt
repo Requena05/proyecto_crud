@@ -73,6 +73,12 @@ class Util {
             return options
         }
 
+        fun obtenerFechaActual(): String {
+            val fechaActual = java.util.Date()
+            val antiguedad = java.text.SimpleDateFormat("yyyy-MM-dd")
+            return antiguedad.format(fechaActual)
+        }
+
 
     }
 }

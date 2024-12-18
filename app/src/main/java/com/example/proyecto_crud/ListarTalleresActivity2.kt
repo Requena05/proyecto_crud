@@ -41,7 +41,7 @@ class ListarTalleresActivity2 : AppCompatActivity() {
         filtrar=findViewById(R.id.filtrar)
         boton_buscar=findViewById(R.id.boton_buscar)
         busqueda=findViewById(R.id.busquedapornombre)
-        //Rellenar el spinner con datos
+        //Rellenar el spinner con dato
          val lista_filtros=resources.getStringArray(R.array.filtros)
         filtrar.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,lista_filtros)
         db_ref=FirebaseDatabase.getInstance().reference

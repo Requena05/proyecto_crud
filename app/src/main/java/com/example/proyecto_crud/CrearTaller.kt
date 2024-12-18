@@ -32,6 +32,9 @@ class CrearTaller : AppCompatActivity() {
     private lateinit var logo: ImageView
     private lateinit var fundacion: EditText
     private lateinit var rating: RatingBar
+    //guardamos el dia de creacion del taller
+    private lateinit var antiguedad:String
+
 
 
      //Firebase
@@ -56,6 +59,7 @@ class CrearTaller : AppCompatActivity() {
         fundacion = findViewById(R.id.fundacion)
         logo = findViewById(R.id.logo)
         rating = findViewById(R.id.estrellas)
+        antiguedad = Util.obtenerFechaActual()
 
         var activity = this
         //firebase
@@ -74,7 +78,7 @@ class CrearTaller : AppCompatActivity() {
 
         var lista_taller = Util.obtenerListaTaller(database, this)
         boton_crear.setOnClickListener {
-
+            antiguedad = Util.obtenerFechaActual()
             if (nombre.text.isEmpty() || ciudad.text.isEmpty()
                 || fundacion.text.isEmpty() || url_logo == null
             ) {
@@ -127,7 +131,8 @@ class CrearTaller : AppCompatActivity() {
                         fundacion.text.toString().toInt(),
                         logo,
                         identificadorFile,
-                        rating.rating
+                        rating.rating,
+                        antiguedad
                     )
                     Util.escribirTaller(database, identificador_taller, taller)
                     Util.tostadaCorrutina(

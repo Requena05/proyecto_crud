@@ -70,10 +70,6 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         holder.borrar.setOnClickListener{
             val db_ref=FirebaseDatabase.getInstance().reference
 
-            db_ref.child("Motor").child("Talleres").child(taller_actual.id_logo!!).removeValue()
-                .addOnSuccessListener {
-                    val imageID=
-                }
             //cuando se borra un taller se borra tambien sus datos en firebase
 
             val client= Client()
@@ -88,7 +84,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
                 )
             }
             lista_filtrada.removeAt(position)
-            db_ref.child("Motor").child("Talleres").child(taller_actual.id_logo!!).removeValue()
+            db_ref.child("Motor").child("Talleres").child(taller_actual.id!!).removeValue()
             Toast.makeText(contexto,"Taller borrado",Toast.LENGTH_SHORT).show()
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,lista_filtrada.size)

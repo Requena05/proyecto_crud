@@ -82,6 +82,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fundacion"
         app:layout_constraintBottom_toTopOf="@id/boton_crear"
+        android:progressTint="@color/gold"
+        android:secondaryProgressTint="@color/gold"
         />
 
     <androidx.appcompat.widget.AppCompatButton
