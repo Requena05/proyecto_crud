@@ -13,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import io.appwrite.Client
@@ -25,9 +26,9 @@ import kotlinx.coroutines.launch
 
 class EditarTallerActivity2 : AppCompatActivity() {
     private lateinit var logo: ImageView
-    private lateinit var nombre: EditText
-    private lateinit var ciudad: EditText
-    private lateinit var fundacion: EditText
+    private lateinit var nombre: TextInputEditText
+    private lateinit var ciudad: TextInputEditText
+    private lateinit var fundacion: TextInputEditText
     private lateinit var boton_modificar: Button
     private lateinit var boton_volver: Button
     private lateinit var rating: RatingBar
@@ -83,8 +84,8 @@ class EditarTallerActivity2 : AppCompatActivity() {
         }
         lista_taller=Util.obtenerListaTaller(database,this)
         boton_modificar.setOnClickListener {
-            if (nombre.text.isEmpty() || ciudad.text.isEmpty()
-                || fundacion.text.isEmpty() || taller.rating==null
+            if (nombre.text!!.isEmpty() || ciudad.text!!.isEmpty()
+                || fundacion.text!!.isEmpty() || taller.rating==null
             ) {
                 Toast.makeText(
                     this,
