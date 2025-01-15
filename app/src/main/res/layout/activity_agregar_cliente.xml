@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarCliente"
+    android:background="#E3F2FD"
+    android:padding="20dp"
+
+    >
+    <TextView
+        android:id="@+id/Cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Agregar Cliente"
+        android:background="@drawable/borderendondo"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:fontFamily="serif-monospace"
+        android:elevation="10dp"
+        android:textFontWeight="900"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_margin="10dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/camponombrecliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Cabecera"
+        android:layout_marginTop="15dp"
+        android:elevation="2dp"
+        app:boxBackgroundMode="none"
+        android:background="@drawable/borderedondo_creacioncliente"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nombrecliente"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Nombre del Cliente"
+            android:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textFontWeight="700"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginBottom="10dp"
+             />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/matriculaytelefonocliente"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/camponombrecliente"
+        android:layout_marginTop="15dp"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campomatriculacliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:layout_marginEnd="05dp"
+            android:background="@drawable/borderedondo_creacioncliente"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/matriculacliente"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Matricula Coche"
+                android:textAlignment="textStart"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campotelefonocliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:background="@drawable/borderedondo_creacioncliente"
+            android:layout_marginStart="05dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/telefonocliente"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:hint="Telefono Cliente"
+                android:textAlignment="textStart"
+                android:textSize="18dp"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/marcamodelocoche"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/matriculaytelefonocliente"
+        android:layout_marginTop="15dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campomarcacochecliente"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:background="@drawable/borderedondo_creacioncliente"
+            android:layout_marginEnd="05dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/marcacochecliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Marca del Coche"
+                android:textAlignment="textStart"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campomodelocliente"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/borderedondo_creacioncliente"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/modelocochecliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Modelo del Coche"
+                android:textAlignment="textStart"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/campoproblema"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/marcamodelocoche"
+        android:elevation="2dp"
+        app:boxBackgroundMode="none"
+
+        android:background="@drawable/borderedondo_creacioncliente"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/problemacochecliente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Problema del coche"
+            android:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:inputType="textMultiLine"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginBottom="10dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:id="@+id/coloryfechallegadacoche"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/agregarcliente"
+        app:layout_constraintTop_toBottomOf="@id/campoproblema"
+        android:elevation="2dp"
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecciona un color:"
+                android:padding="8dp" />
+
+            <RadioGroup
+                android:id="@+id/colorPalette"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <RadioButton
+                    android:id="@+id/colorRed"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/red"
+                    android:button="@null"
+                    android:layout_margin="4dp"/>
+
+                <RadioButton
+                    android:id="@+id/colorGreen"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/green"
+                    android:button="@null"
+                    android:layout_margin="4dp"/>
+
+                <RadioButton
+                    android:id="@+id/colorBlue"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/blue"
+                    android:button="@null"
+                    android:layout_margin="4dp"/>
+
+                <RadioButton
+                    android:id="@+id/colorYellow"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/yellow"
+                    android:button="@null"
+                    android:layout_margin="4dp"/>
+
+                <RadioButton
+                    android:id="@+id/colorPurple"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/purple"
+                    android:button="@null"
+                    android:layout_margin="4dp"/>
+            </RadioGroup>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/agregarcliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coloryfechallegadacoche"
+        android:background="@drawable/bordebototn"
+        android:text="Agregar Cliente"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textFontWeight="900"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

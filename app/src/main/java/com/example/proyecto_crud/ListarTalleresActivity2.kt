@@ -63,12 +63,12 @@ class ListarTalleresActivity2 : AppCompatActivity() {
                             lista.sortByDescending { it.rating }
                             recycler.adapter?.notifyDataSetChanged()
                         }
-                        "Filtrar en orden ascendente"->{
-                            lista.sortBy { it.fundacion }
-                            recycler.adapter?.notifyDataSetChanged()
-                        }
                         "Filtrar en orden descendente"->{
                             lista.sortByDescending { it.fundacion }
+                            recycler.adapter?.notifyDataSetChanged()
+                        }
+                        "Filtrar en orden ascendente"->{
+                            lista.sortBy { it.fundacion }
                             recycler.adapter?.notifyDataSetChanged()
                         }
                     }
