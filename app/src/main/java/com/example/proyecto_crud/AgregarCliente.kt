@@ -36,8 +36,11 @@ class AgregarCliente : AppCompatActivity() {
 
         // Paleta de colores
         val colors = intArrayOf(
+            //Añade colores que no esten en esta lista
             Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.MAGENTA,
             Color.CYAN, Color.GRAY, Color.LTGRAY, Color.DKGRAY, Color.BLACK,
+            Color.WHITE,
+
         )
 
         // Añadir botones de color al GridLayout
@@ -54,13 +57,15 @@ class AgregarCliente : AppCompatActivity() {
             colorButton.setOnClickListener {
                 selectedColor = color
                 Toast.makeText(this, "Color seleccionado", Toast.LENGTH_SHORT).show()
-                colorseleccionado.setBackgroundColor(selectedColor)
+                colorseleccionado.setColorFilter(selectedColor)
             }
             colorGrid.addView(colorButton)
+
         }
 
         val dialog = builder.create()
         dialog.show()
+
     }
 
 }

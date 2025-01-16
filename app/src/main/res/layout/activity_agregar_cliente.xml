@@ -175,7 +175,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/campoproblema"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/marcamodelocoche"
@@ -200,7 +200,7 @@
     <LinearLayout
         android:id="@+id/coloryfechallegadacoche"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
