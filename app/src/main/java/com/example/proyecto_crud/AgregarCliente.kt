@@ -1,31 +1,62 @@
 package com.example.proyecto_crud
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatSpinner
+
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.tasks.await
 
 
 class AgregarCliente : AppCompatActivity() {
     private var selectedColor: Int = Color.WHITE // Color por defecto
+    private lateinit var tallerseleccionado: Spinner
+
     private lateinit var colorseleccionado: ImageView
+    private lateinit var Botoncolores:AppCompatButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_cliente)
-        val openColorPickerButton: Button = findViewById(R.id.openColorPickerButton)
-        openColorPickerButton.setOnClickListener {
+        tallerseleccionado=findViewById(R.id.tallerseleccionado)
+        val db_ref=FirebaseDatabase.getInstance().reference
+
+
+
+        var lista_nombretaller: MutableList<String>
+        lista_nombretaller=Util.obtenernombreTaller(db_ref,this)
+
+        tallerseleccionado.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista_nombretaller)
+
+
+
+
+        Botoncolores=findViewById(R.id.openColorPickerButton)
+        colorseleccionado=findViewById(R.id.colorseleccionado)
+        Botoncolores.setOnClickListener {
             showColorPickerDialog()
         }
-        colorseleccionado = findViewById(R.id.colorseleccionado)
-
     }
+
+
     private fun showColorPickerDialog() {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -67,5 +98,6 @@ class AgregarCliente : AppCompatActivity() {
         dialog.show()
 
     }
+
 
 }

@@ -50,6 +50,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         holder.ciudad.text=taller_actual.ciudad
         holder.fundacion.text=taller_actual.fundacion.toString()
         holder.rating.rating=taller_actual.rating!!
+        Log.d("Nombre",taller_actual.nombre.toString())
 
         val URL:String?=when(taller_actual.url_logo){
             ""->null
@@ -88,6 +89,12 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
             Toast.makeText(contexto,"Taller borrado",Toast.LENGTH_SHORT).show()
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,lista_filtrada.size)
+
         }
+
     }
+    //funcion para conseguir una lista publica de nombres de los talleres
+
+
+
 }

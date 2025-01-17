@@ -2,8 +2,10 @@ package com.example.proyecto_crud
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -17,9 +19,28 @@ import kotlinx.coroutines.tasks.await
 class Util {
     companion object {
 
-        fun existeTaller(clubs: MutableList<Taller>, nombre: String): Boolean {
-            return clubs.any { it.nombre!!.lowercase() == nombre.lowercase() }
+        fun existeTaller(taller: MutableList<Taller>, nombre: String): Boolean {
+            return taller.any { it.nombre!!.lowercase() == nombre.lowercase() }
         }
+        fun obtenernombreTaller(db_ref: DatabaseReference, contexto: Context): MutableList<String> {
+            val lista_Taller = mutableListOf<String>()
+            db_ref.child("Motor").child("Talleres")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach { club ->
+                            val club_actual = club.getValue(Taller::class.java)
+                            lista_Taller.add(club_actual!!.nombre!!)
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(contexto, "Error al obtener los Talleres", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                })
+            return lista_Taller
+        }
+
         fun obtenerListaTaller(db_ref: DatabaseReference, contexto: Context): MutableList<Taller> {
             val lista_Taller = mutableListOf<Taller>()
             db_ref.child("Motor").child("Talleres")
@@ -79,6 +100,9 @@ class Util {
             return antiguedad.format(fechaActual)
         }
 
-
     }
+
+
+
 }
+

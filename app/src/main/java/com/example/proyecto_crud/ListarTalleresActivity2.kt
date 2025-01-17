@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class ListarTalleresActivity2 : AppCompatActivity() {
+class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var volver: Button
     private lateinit var recycler: RecyclerView
     private lateinit var lista:MutableList<Taller>
@@ -103,5 +103,4 @@ class ListarTalleresActivity2 : AppCompatActivity() {
         finish()
     }
     }
-
 }

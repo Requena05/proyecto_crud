@@ -230,7 +230,16 @@
             android:layout_height="70dp"
             android:src="@color/black"
             android:layout_gravity="center"
-            android:layout_marginStart="120dp"
+             android:layout_marginStart="10dp"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/tallerseleccionado"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/borderedondo_creacioncliente"
+            android:elevation="2dp"
             />
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
