@@ -66,6 +66,7 @@ class AgregarCliente : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_cliente)
         tallerseleccionado=findViewById(R.id.tallerseleccionado)
+
         val db_ref=FirebaseDatabase.getInstance().reference
         nombre_cliente= findViewById(R.id.nombrecliente)
         matricula_cliente=findViewById(R.id.matriculacliente)
@@ -86,7 +87,13 @@ class AgregarCliente : AppCompatActivity() {
         var lista_nombretaller: MutableList<String>
         lista_nombretaller=Util.obtenernombreTaller(db_ref,this)
 
-        tallerseleccionado.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista_nombretaller)
+        ArrayAdapter(this, android.R.layout.simple_spinner_item, lista_nombretaller).also{
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            tallerseleccionado.adapter=it
+        }
+
+
+
         val client = Client()
             .setEndpoint("https://cloud.appwrite.io/v1")    // Your API Endpoint
             .setProject(id_projecto)
