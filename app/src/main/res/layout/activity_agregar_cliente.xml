@@ -39,7 +39,7 @@
         app:boxBackgroundMode="none"
         android:background="@drawable/borderedondo_creacioncliente"
         >
-        <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nombrecliente"
             android:layout_width="match_parent"
             android:layout_height="60dp"

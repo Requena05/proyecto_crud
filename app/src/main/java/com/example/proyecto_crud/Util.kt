@@ -22,6 +22,12 @@ class Util {
         fun existeTaller(taller: MutableList<Taller>, nombre: String): Boolean {
             return taller.any { it.nombre!!.lowercase() == nombre.lowercase() }
         }
+
+        fun existeCliente(cliente: MutableList<Cliente>, matricula: String): Boolean {
+            return cliente.any { it.matricula_cliente!!.lowercase() == matricula.lowercase() }
+        }
+
+
         fun obtenernombreTaller(db_ref: DatabaseReference, contexto: Context): MutableList<String> {
             val lista_Taller = mutableListOf<String>()
             db_ref.child("Motor").child("Talleres")
@@ -59,8 +65,31 @@ class Util {
                 })
             return lista_Taller
         }
+        fun obtenerListaCliente(db_ref: DatabaseReference, contexto: Context): MutableList<Cliente> {
+            val lista_cliente = mutableListOf<Cliente>()
+            db_ref.child("Motor").child("Cliente")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach { cliente ->
+                            val client_actual = cliente.getValue(Cliente::class.java)
+                            lista_cliente.add(client_actual!!)
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(contexto, "Error al obtener los clientes", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                })
+            return lista_cliente
+        }
+
+
         fun escribirTaller(db_ref: DatabaseReference,id: String, taller: Taller) {
             db_ref.child("Motor").child("Talleres").child(id).setValue(taller)
+        }
+        fun escribirCliente(db_ref: DatabaseReference,id: String, cliente: Cliente) {
+            db_ref.child("Motor").child("Cliente").child(id).setValue(cliente)
         }
         suspend fun guardarLogo(almacen: StorageReference, id: String, Logo: Uri): String {
             var urlAlmacen: Uri
