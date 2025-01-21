@@ -31,6 +31,8 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var adaptador: AdaptadorTaller
     private lateinit var filtrar: Spinner
     private lateinit var boton_buscar: ImageView
+    private lateinit var agregarCliente: ImageView
+    private lateinit var listarclientes: ImageView
     private var lista_filtradaa= mutableListOf<Taller>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,9 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
         filtrar=findViewById(R.id.filtrar)
         boton_buscar=findViewById(R.id.boton_buscar)
         busqueda=findViewById(R.id.busquedapornombre)
+
+
+
         //Rellenar el spinner con dato
          val lista_filtros=resources.getStringArray(R.array.filtros)
         filtrar.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,lista_filtros)

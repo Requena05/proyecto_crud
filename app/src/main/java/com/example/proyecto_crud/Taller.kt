@@ -1,7 +1,10 @@
 package com.example.proyecto_crud
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class Taller(
     var id: String? = "",
     var nombre: String? = "",
@@ -13,4 +16,4 @@ data class Taller(
     var fecha_creado:String?="",
     var matriculas_clientes:MutableList<String>?= mutableListOf()
 
-):Serializable
+):Parcelable

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="4dp"
+    android:layout_height="wrap_content"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#FAF2F3"
+        android:elevation="5dp"
+        android:paddingBottom="4dp"
+        >
+
+        <ImageView
+            android:id="@+id/colorcoche"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:src="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.242" />
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/colorcoche"
+            app:layout_constraintTop_toTopOf="@id/colorcoche"
+            android:layout_marginStart="20dp"
+            android:text="Nombre"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/matricula"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Matricula"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/nombre" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/telefono"
+            app:layout_constraintTop_toTopOf="@id/nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Telefono"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/marcacoche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/colorcoche"
+            app:layout_constraintEnd_toEndOf="@id/colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/colorcoche"
+            android:text="Marca del coche"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="80dp"
+            />
+        <TextView
+            android:id="@+id/modelo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/colorcoche"
+            android:text="Modelo del coche"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="10dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:id="@+id/problema"
+
+            android:background="@drawable/baseline_arrow_drop_down_24"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/marcacoche"
+            app:layout_constraintTop_toTopOf="@id/marcacoche"
+            app:layout_constraintEnd_toStartOf="@id/modelo"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

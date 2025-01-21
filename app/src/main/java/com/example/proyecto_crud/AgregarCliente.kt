@@ -40,7 +40,7 @@ import kotlinx.coroutines.tasks.await
 
 class AgregarCliente : AppCompatActivity() {
     private var selectedColor: Int = Color.WHITE // Color por defecto
-    private lateinit var tallerseleccionado: Spinner
+
     private lateinit var nombre_cliente: TextInputEditText
     private lateinit var matricula_cliente: TextInputEditText
     private lateinit var telefono_cliente: TextInputEditText
@@ -48,13 +48,12 @@ class AgregarCliente : AppCompatActivity() {
     private lateinit var marca_coche : TextInputEditText
     private lateinit var problema_coche: TextInputEditText
     private lateinit var colorseleccionado: ImageView
+
     private lateinit var Botoncolores:AppCompatButton
     private lateinit var antiguedad:String
     private lateinit var boton_crear: AppCompatButton
     //Firebase
     private lateinit var database: DatabaseReference
-    //private lateinit var storage: StorageReference
-    private var url_matricula: Uri? = null
 
     //AppWriteStorage
     private lateinit var id_projecto: String
@@ -65,7 +64,6 @@ class AgregarCliente : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_cliente)
-        tallerseleccionado=findViewById(R.id.tallerseleccionado)
 
         val db_ref=FirebaseDatabase.getInstance().reference
         nombre_cliente= findViewById(R.id.nombrecliente)
@@ -83,16 +81,6 @@ class AgregarCliente : AppCompatActivity() {
         //AppWriteStorage
         id_projecto="6759d7920012485d1e95"
         id_bucket="6759d837002a69ef194d"
-
-        var lista_nombretaller: MutableList<String>
-        lista_nombretaller=Util.obtenernombreTaller(db_ref,this)
-
-        ArrayAdapter(this, android.R.layout.simple_spinner_item, lista_nombretaller).also{
-            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            tallerseleccionado.adapter=it
-        }
-
-
 
         val client = Client()
             .setEndpoint("https://cloud.appwrite.io/v1")    // Your API Endpoint
@@ -118,40 +106,21 @@ class AgregarCliente : AppCompatActivity() {
                 Toast.makeText(this, "Cliente con ese coche afectado ya existe", Toast.LENGTH_SHORT)
                     .show()
             }else {
-                val identificador_taller = database.child("Motor").child("Talleres").child("nombre").push().key
-
+                val identificador_cliente = database.child("Motor").child("Cliente").child("matricula").push().key
+                val id_taller= intent.getStringExtra("Taller")
                 GlobalScope.launch(Dispatchers.IO) {
-                    val inputStream = contentResolver.openInputStream(url_matricula!!)
-                    val identificadorAppWrite = identificador_taller!!.substring(1, 20)
-                    val fileImpostor = inputStream.use { input ->
-                        val tempFile = kotlin.io.path.createTempFile(identificadorAppWrite).toFile()
-                        if (input != null) {
-                            tempFile.outputStream().use { output ->
-                                input.copyTo(output)
-                            }
-                        }
-                        InputFile.fromFile(tempFile) // tenemos un archivo temporal con la imagen
-                    }
-                    val identificadorFile = ID.unique()
-                    val file = storage.createFile(
-                        bucketId = id_bucket,
-                        fileId = identificadorFile,
-                        file = fileImpostor,
-
-                        )
-
                     val cliente = Cliente(
                         nombre_cliente.text.toString(),
                         matricula_cliente.text.toString(),
                         telefono_cliente.text.toString().toInt(),
                         marca_coche.text.toString(),
                         modelo_coche.text.toString(),
-                        colorseleccionado,
+                        selectedColor.toString(),
                         problema_coche.text.toString(),
-                        identificador_taller
+                        id_taller
                     )
 
-                    Util.escribirCliente(database, identificador_taller, cliente)
+                    Util.escribirCliente(database, identificador_cliente!!, cliente)
                     Util.tostadaCorrutina(
                         activity, applicationContext,
                         "Cliente creado con exito"

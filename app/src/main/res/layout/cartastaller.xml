@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/item_nombre"
-            android:layout_width="252dp"
+            android:layout_width="130dp"
             android:layout_height="28dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
@@ -39,7 +39,25 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/item_miniatura"
             app:layout_constraintTop_toTopOf="parent" />
-
+<ImageView
+    android:id="@+id/item_add"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    app:layout_constraintStart_toEndOf="@id/item_nombre"
+    app:layout_constraintEnd_toStartOf="@id/lista"
+    app:layout_constraintTop_toTopOf="@id/item_nombre"
+    app:layout_constraintBottom_toBottomOf="@id/item_nombre"
+    android:src="@drawable/baseline_add_24"
+    />
+        <ImageView
+            android:id="@+id/lista"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toEndOf="@id/item_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_nombre"
+            app:layout_constraintBottom_toBottomOf="@id/item_nombre"
+            android:src="@drawable/listar"/>
         <TextView
             android:id="@+id/item_ciudad"
             android:layout_width="147dp"

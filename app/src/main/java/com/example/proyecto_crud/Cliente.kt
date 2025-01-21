@@ -9,7 +9,7 @@ data class Cliente(
         var numero_telefono_cliente: Int?=0,
         var marca_coche_cliente: String?="",
         var modelo_coche_cliente: String?="",
-        var color_coche_cliente: ImageView?,
+        var color_coche_cliente: String?="",
         var problema_cliente: String?="",
         var id_taller: String?="",
     ):Serializable

@@ -32,7 +32,10 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         val editar: ImageView = itemView.findViewById(R.id.item_editar)
         val borrar: ImageView = itemView.findViewById(R.id.item_borrar)
         val rating: RatingBar = itemView.findViewById(R.id.estrellas)
+        val agregar: ImageView = itemView.findViewById(R.id.item_add)
+        val lista: ImageView = itemView.findViewById(R.id.lista)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TallerViewHolder {
         val vista_item=LayoutInflater.from(parent.context).inflate(R.layout.cartastaller,parent,false)
@@ -92,8 +95,23 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
 
         }
 
+        holder.agregar.setOnClickListener {
+            val taller = lista_filtrada[position]
+            val intent=Intent(contexto,AgregarCliente::class.java)
+            intent.putExtra("Taller",taller.id)
+            contexto.startActivity(intent)
+
+        }
+        holder.lista.setOnClickListener {
+            val taller = lista_filtrada[position]
+            val intent = Intent(contexto, ListarClientesActivity::class.java)
+            intent.putExtra("Taller", taller.id)
+            contexto.startActivity(intent)
+
+        }
+
     }
-    //funcion para conseguir una lista publica de nombres de los talleres
+
 
 
 

@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     lateinit var crearTaller: AppCompatButton
     lateinit var listarTalleres: AppCompatButton
-    lateinit var crearCliente: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         crearTaller = findViewById(R.id.crearTaller)
         listarTalleres = findViewById(R.id.listarTalleres)
-        crearCliente = findViewById(R.id.Añadircliente)
 
         crearTaller.setOnClickListener {
             val intent = Intent(this, CrearTaller::class.java)
@@ -31,10 +29,7 @@ class MainActivity : AppCompatActivity() {
         val intent=Intent(this, ListarTalleresActivity2::class.java)
             startActivity(intent)
         }
-        crearCliente.setOnClickListener {
-            val intent=Intent(this, AgregarCliente::class.java)
-            startActivity(intent)
-        }
+
 
     }
 }
