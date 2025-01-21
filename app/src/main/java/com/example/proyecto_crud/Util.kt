@@ -28,24 +28,7 @@ class Util {
         }
 
 
-        fun obtenernombreTaller(db_ref: DatabaseReference, contexto: Context): MutableList<String> {
-            val lista_Taller = mutableListOf<String>()
-            db_ref.child("Motor").child("Talleres")
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.children.forEach { club ->
-                            val club_actual = club.getValue(Taller::class.java)
-                            lista_Taller.add(club_actual!!.nombre!!)
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(contexto, "Error al obtener los Talleres", Toast.LENGTH_SHORT)
-                            .show()
-                    }
 
-                })
-            return lista_Taller
-        }
 
         fun obtenerListaTaller(db_ref: DatabaseReference, contexto: Context): MutableList<Taller> {
             val lista_Taller = mutableListOf<Taller>()
@@ -128,6 +111,7 @@ class Util {
             val antiguedad = java.text.SimpleDateFormat("yyyy-MM-dd")
             return antiguedad.format(fechaActual)
         }
+
 
     }
 

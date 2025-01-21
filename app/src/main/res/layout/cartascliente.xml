@@ -17,7 +17,7 @@
         >
 
         <ImageView
-            android:id="@+id/colorcoche"
+            android:id="@+id/item_colorcoche"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
@@ -28,12 +28,12 @@
             app:layout_constraintVertical_bias="0.242" />
 
         <TextView
-            android:id="@+id/nombre"
+            android:id="@+id/item_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/colorcoche"
-            app:layout_constraintTop_toTopOf="@id/colorcoche"
+            app:layout_constraintStart_toEndOf="@id/item_colorcoche"
+            app:layout_constraintTop_toTopOf="@id/item_colorcoche"
             android:layout_marginStart="20dp"
             android:text="Nombre"
             android:fontFamily="sans-serif-condensed-medium"
@@ -42,7 +42,7 @@
             />
 
         <TextView
-            android:id="@+id/matricula"
+            android:id="@+id/item_matricula"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -52,14 +52,14 @@
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@id/colorcoche"
-            app:layout_constraintTop_toBottomOf="@id/nombre" />
+            app:layout_constraintStart_toEndOf="@id/item_colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/item_nombre" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/telefono"
-            app:layout_constraintTop_toTopOf="@id/nombre"
+            android:id="@+id/item_telefono"
+            app:layout_constraintTop_toTopOf="@id/item_nombre"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
@@ -70,12 +70,12 @@
             />
 
         <TextView
-            android:id="@+id/marcacoche"
+            android:id="@+id/item_marcacoche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/colorcoche"
-            app:layout_constraintEnd_toEndOf="@id/colorcoche"
-            app:layout_constraintTop_toBottomOf="@id/colorcoche"
+            app:layout_constraintStart_toStartOf="@id/item_colorcoche"
+            app:layout_constraintEnd_toEndOf="@id/item_colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/item_colorcoche"
             android:text="Marca del coche"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed-medium"
@@ -84,11 +84,11 @@
             android:layout_marginStart="80dp"
             />
         <TextView
-            android:id="@+id/modelo"
+            android:id="@+id/item_modelo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/item_colorcoche"
             android:text="Modelo del coche"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed-medium"
@@ -96,17 +96,18 @@
             android:textColor="@color/black"
             android:layout_marginEnd="10dp"
             />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/problema"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:id="@+id/problema"
 
             android:background="@drawable/baseline_arrow_drop_down_24"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@id/marcacoche"
-            app:layout_constraintTop_toTopOf="@id/marcacoche"
-            app:layout_constraintEnd_toStartOf="@id/modelo"
-            />
+            app:layout_constraintEnd_toStartOf="@id/item_modelo"
+            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintStart_toEndOf="@id/item_marcacoche"
+            app:layout_constraintTop_toTopOf="@id/item_marcacoche" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

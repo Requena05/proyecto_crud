@@ -42,7 +42,6 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         contexto=parent.context
         return TallerViewHolder(vista_item)
     }
-
     override fun getItemCount()=lista_filtrada.size
 
     override fun onBindViewHolder(holder: TallerViewHolder, position: Int) {

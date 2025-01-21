@@ -31,8 +31,6 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var adaptador: AdaptadorTaller
     private lateinit var filtrar: Spinner
     private lateinit var boton_buscar: ImageView
-    private lateinit var agregarCliente: ImageView
-    private lateinit var listarclientes: ImageView
     private var lista_filtradaa= mutableListOf<Taller>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
