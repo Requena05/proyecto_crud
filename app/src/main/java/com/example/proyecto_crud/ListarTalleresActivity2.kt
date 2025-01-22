@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import io.appwrite.Client
+import io.appwrite.services.Storage
 
 class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var volver: Button
@@ -29,6 +31,7 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var db_ref: DatabaseReference
     private lateinit var busqueda: TextInputEditText
     private lateinit var adaptador: AdaptadorTaller
+
     private lateinit var filtrar: Spinner
     private lateinit var boton_buscar: ImageView
     private var lista_filtradaa= mutableListOf<Taller>()
@@ -41,7 +44,6 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
         filtrar=findViewById(R.id.filtrar)
         boton_buscar=findViewById(R.id.boton_buscar)
         busqueda=findViewById(R.id.busquedapornombre)
-
 
 
         //Rellenar el spinner con dato

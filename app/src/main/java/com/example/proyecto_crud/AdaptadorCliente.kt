@@ -18,6 +18,7 @@ import io.appwrite.services.Storage
 class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): RecyclerView.Adapter<AdaptadorCliente.ClienteViewHolder>() {
     private lateinit var contexto: Context
     private var lista_filtrada=lista_cliente
+
     private lateinit var db_ref: FirebaseDatabase
 
     inner class ClienteViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
