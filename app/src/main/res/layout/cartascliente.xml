@@ -98,14 +98,12 @@
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/problema"
+            android:id="@+id/item_problema"
             android:layout_width="60dp"
             android:layout_height="40dp"
-
             android:background="@drawable/baseline_arrow_drop_down_24"
             android:gravity="center"
             app:layout_constraintEnd_toStartOf="@id/item_modelo"
-            app:layout_constraintHorizontal_bias="0.257"
             app:layout_constraintStart_toEndOf="@id/item_marcacoche"
             app:layout_constraintTop_toTopOf="@id/item_marcacoche" />
 

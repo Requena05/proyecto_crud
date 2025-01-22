@@ -74,7 +74,6 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
             val db_ref=FirebaseDatabase.getInstance().reference
 
             //cuando se borra un taller se borra tambien sus datos en firebase
-
             val client= Client()
                 .setEndpoint("https://cloud.appwrite.io/v1")
                 .setProject(id_projecto)
@@ -91,7 +90,6 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
             Toast.makeText(contexto,"Taller borrado",Toast.LENGTH_SHORT).show()
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,lista_filtrada.size)
-
         }
 
         holder.agregar.setOnClickListener {

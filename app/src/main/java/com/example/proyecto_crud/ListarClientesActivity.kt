@@ -1,6 +1,8 @@
 package com.example.proyecto_crud
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -24,6 +26,7 @@ class ListarClientesActivity : AppCompatActivity() {
     private lateinit var recycler: RecyclerView
     private lateinit var lista:MutableList<Cliente>
     private lateinit var db_ref: DatabaseReference
+    private lateinit var contexto: Context
     private lateinit var adaptador: AdaptadorCliente
     private lateinit var logotaller: ImageView
     @SuppressLint("NotifyDataSetChanged")
@@ -34,6 +37,7 @@ class ListarClientesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_listar_clientes)
         recycler=findViewById(R.id.lista_clientes)
         logotaller=findViewById(R.id.logo_taller)
+        contexto=this
         //con la imagen del taller se cambia el imageview del logo_taller
 
         val id_projecto="6759d7920012485d1e95"
@@ -102,6 +106,13 @@ class ListarClientesActivity : AppCompatActivity() {
         recycler.setHasFixedSize(true)
         recycler.layoutManager=LinearLayoutManager(applicationContext)
         recycler.adapter?.notifyDataSetChanged()
+
+    }
+    override fun onResume() {
+        super.onResume()
+        recycler.adapter?.notifyDataSetChanged()
+        //si existe un cliente con la matricula null en la base de datos se eliminara
+        adaptador.notifyDataSetChanged()
 
     }
 }

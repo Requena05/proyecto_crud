@@ -58,7 +58,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
         //storage = FirebaseStorage.getInstance().reference
 
-        taller = intent.getSerializableExtra("Taller") as Taller
+        taller = intent.getParcelableExtra<Taller>("Taller") as Taller
 
         nombre.setText(taller.nombre)
         ciudad.setText(taller.ciudad)

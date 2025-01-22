@@ -1,6 +1,7 @@
 package com.example.proyecto_crud
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -40,7 +41,7 @@ import kotlinx.coroutines.tasks.await
 
 class AgregarCliente : AppCompatActivity() {
     private var selectedColor: Int = Color.WHITE // Color por defecto
-
+    private lateinit var contexto:Context
     private lateinit var nombre_cliente: TextInputEditText
     private lateinit var matricula_cliente: TextInputEditText
     private lateinit var telefono_cliente: TextInputEditText
@@ -64,7 +65,7 @@ class AgregarCliente : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_cliente)
-
+        contexto=this
         val db_ref=FirebaseDatabase.getInstance().reference
         nombre_cliente= findViewById(R.id.nombrecliente)
         matricula_cliente=findViewById(R.id.matriculacliente)
@@ -177,6 +178,7 @@ class AgregarCliente : AppCompatActivity() {
 
         val dialog = builder.create()
         dialog.show()
+
 
     }
 

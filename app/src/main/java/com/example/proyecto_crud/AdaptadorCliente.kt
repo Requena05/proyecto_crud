@@ -1,6 +1,7 @@
 package com.example.proyecto_crud
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,7 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
         val marca: TextView = itemView.findViewById(R.id.item_marcacoche)
         val modelo: TextView = itemView.findViewById(R.id.item_modelo)
         val color: ImageView = itemView.findViewById(R.id.item_colorcoche)
-
+        val boton_problema: AppCompatButton = itemView.findViewById(R.id.item_problema)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClienteViewHolder {
@@ -51,6 +52,17 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
                     holder.marca.text=cliente_actual.marca_coche_cliente
                     holder.modelo.text=cliente_actual.modelo_coche_cliente
                     holder.color.setColorFilter(cliente_actual.color_coche_cliente!!.toInt())
+
+
+        holder.boton_problema.setOnClickListener {
+           //Crearemos una actividad donde se vea el problema y se pueda editar y eliminar (tambien se eliminara el cliente de la base de datos)
+            val intent = Intent(contexto,ProblemaActivity::class.java)
+            intent.putExtra("Cliente",cliente_actual.matricula_cliente.toString())
+            Log.d("matricula",cliente_actual.matricula_cliente.toString())
+            contexto.startActivity(intent)
+
+
+        }
 
     }
 
