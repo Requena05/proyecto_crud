@@ -26,18 +26,26 @@ class ListarClientesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        lista= mutableListOf()
         setContentView(R.layout.activity_listar_clientes)
         recycler=findViewById(R.id.lista_clientes)
-        lista= mutableListOf()
         db_ref= FirebaseDatabase.getInstance().reference
         db_ref.child("Motor")
             .child("Cliente").addValueEventListener(object : ValueEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
                     lista.clear()
-                    snapshot.children.forEach { hijo: DataSnapshot? ->
+
+                    snapshot.children.forEach { hijo:DataSnapshot?  ->
                         val pojo_cliente = hijo?.getValue(Cliente::class.java)
-                        lista.add(pojo_cliente!!)
+                        Log.d("Cliente",pojo_cliente.toString())
+                        adaptador.notifyDataSetChanged()
+                        if (pojo_cliente != null) {
+                            if(pojo_cliente.id_taller==intent.getStringExtra("Taller")){
+                                lista.add(pojo_cliente)
+                            }
+                        }
+
                     }
 
                 }
@@ -45,9 +53,8 @@ class ListarClientesActivity : AppCompatActivity() {
                     println(error.message)
                 }
             })
-
+        Log.d("Lista aaaaa",lista.toString())
         adaptador= AdaptadorCliente(lista)
-        Log.d("AdaptadorCliente",lista.toString())
         recycler.adapter=adaptador
         adaptador.notifyDataSetChanged()
         recycler.setHasFixedSize(true)
