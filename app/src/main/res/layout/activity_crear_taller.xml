@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".CrearTaller"
     android:background="#E3F2FD"
-    android:padding="25dp"
+    android:paddingVertical="25dp"
     >
     <TextView
         android:id="@+id/Cabecera"

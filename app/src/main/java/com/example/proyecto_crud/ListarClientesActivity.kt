@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -53,15 +54,18 @@ class ListarClientesActivity : AppCompatActivity() {
             //obtenemos la imagen del taller con el id del taller que nos pasan por intent y la mostramos en el imageview
             override fun onDataChange(snapshot: DataSnapshot) {
                 val pojo_taller=snapshot.getValue(Taller::class.java)
-                val URL:String?=when(pojo_taller!!.url_logo){
-                    ""->null
-                    else->pojo_taller.url_logo
+                if(pojo_taller!=null){
+                    val URL:String?=when(pojo_taller!!.url_logo){
+                        ""->null
+                        else->pojo_taller.url_logo
+                    }
+                    Glide.with(applicationContext)
+                        .load(URL)
+                        .apply(Util.opcionesGlide(applicationContext))
+                        .transition(Util.transicion)
+                        .into(logotaller)
                 }
-                Glide.with(applicationContext)
-                    .load(URL)
-                    .apply(Util.opcionesGlide(applicationContext))
-                    .transition(Util.transicion)
-                    .into(logotaller)
+
             }
 
             override fun onCancelled(error: DatabaseError) {

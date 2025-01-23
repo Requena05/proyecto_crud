@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.getValue
+import com.google.firebase.database.values
 import io.appwrite.Client
 import io.appwrite.services.Storage
 import kotlinx.coroutines.Dispatchers
@@ -72,7 +74,17 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         }
         holder.borrar.setOnClickListener{
             val db_ref=FirebaseDatabase.getInstance().reference
+            db_ref.child("Motor").child("Cliente").get().addOnCompleteListener {
+                it.result.children.forEach {
+                    if (it.child("id_taller").value.toString()==taller_actual.id){
+                        Log.d("id_cliente",it.key.toString())
+                        val id_cliente=it.key.toString()
+                        db_ref.child("Motor").child("Cliente").child(id_cliente).removeValue()
+                    }
 
+                }
+
+            }
             //cuando se borra un taller se borra tambien sus datos en firebase
             val client= Client()
                 .setEndpoint("https://cloud.appwrite.io/v1")
@@ -84,6 +96,10 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
                     bucketId = id_bucket,
                     fileId = taller_actual.id_logo!!
                 )
+                //Los clientes asociados al taller se borran tambien
+
+
+
             }
             lista_filtrada.removeAt(position)
             db_ref.child("Motor").child("Talleres").child(taller_actual.id!!).removeValue()
