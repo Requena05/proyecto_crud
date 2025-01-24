@@ -1,42 +1,31 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.cliente
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatSpinner
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.dataclass.Cliente
 import com.google.android.material.textfield.TextInputEditText
 
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.StorageReference
 import io.appwrite.Client
-import io.appwrite.ID
-import io.appwrite.models.InputFile
 import io.appwrite.services.Storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 
 class AgregarCliente : AppCompatActivity() {
@@ -89,7 +78,7 @@ class AgregarCliente : AppCompatActivity() {
 //        val listartaller = Utile.obtenerListaTaller(database, this)
         val storage = Storage(client)
 
-        var lista_cliente = Util.obtenerListaCliente(database,this)
+        var lista_cliente = Util.obtenerListaCliente(database, this)
         boton_crear.setOnClickListener {
             antiguedad = Util.obtenerFechaActual()
             if ((nombre_cliente.text.toString().isEmpty() || matricula_cliente.text.toString().isEmpty()
@@ -102,7 +91,8 @@ class AgregarCliente : AppCompatActivity() {
                 ).show()
             } else if (Util.existeCliente(
                     lista_cliente,
-                    matricula_cliente.text.toString())
+                    matricula_cliente.text.toString()
+                )
             ) {
                 Toast.makeText(this, "Cliente con ese coche afectado ya existe", Toast.LENGTH_SHORT)
                     .show()

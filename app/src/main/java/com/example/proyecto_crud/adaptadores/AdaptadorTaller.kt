@@ -1,4 +1,4 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.adaptadores
 
 import android.content.Context
 import android.content.Intent
@@ -12,15 +12,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.proyecto_crud.cliente.AgregarCliente
+import com.example.proyecto_crud.taller.EditarTallerActivity2
+import com.example.proyecto_crud.cliente.ListarClientesActivity
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.dataclass.Taller
+import com.example.proyecto_crud.Util
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.getValue
-import com.google.firebase.database.values
 import io.appwrite.Client
 import io.appwrite.services.Storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.net.URL
 
 class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView.Adapter<AdaptadorTaller.TallerViewHolder>(){
     private lateinit var contexto:Context
@@ -68,7 +71,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
             .into(holder.miniatura)
 
         holder.editar.setOnClickListener{
-            val intent = Intent(contexto,EditarTallerActivity2::class.java)
+            val intent = Intent(contexto, EditarTallerActivity2::class.java)
             intent.putExtra("Taller",taller_actual)
             contexto.startActivity(intent)
         }
@@ -110,7 +113,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
 
         holder.agregar.setOnClickListener {
             val taller = lista_filtrada[position]
-            val intent=Intent(contexto,AgregarCliente::class.java)
+            val intent=Intent(contexto, AgregarCliente::class.java)
             intent.putExtra("Taller",taller.id)
             contexto.startActivity(intent)
 

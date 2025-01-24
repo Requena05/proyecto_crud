@@ -1,8 +1,7 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.dataclass
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 @Parcelize
 data class Taller(

@@ -5,8 +5,9 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_crud.taller.ListarTalleresActivity2
+import com.example.proyecto_crud.partechat.MensajeActivity
+import com.example.proyecto_crud.taller.CrearTaller
 
 class MainActivity : AppCompatActivity() {
     lateinit var crearTaller: AppCompatButton

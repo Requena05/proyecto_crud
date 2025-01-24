@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarTallerActivity2">
+    tools:context=".taller.EditarTallerActivity2">
     <ImageView
         android:id="@+id/escudo"
         android:layout_width="190dp"

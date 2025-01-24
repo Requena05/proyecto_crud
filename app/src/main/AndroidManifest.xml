@@ -13,28 +13,31 @@
         android:theme="@style/Theme.Proyecto_CRUD"
         tools:targetApi="31">
         <activity
-            android:name=".MensajeActivity"
+            android:name=".partechat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ProblemaActivity"
+            android:name=".partechat.MensajeActivity"
             android:exported="false" />
         <activity
-            android:name=".ListarClientesActivity"
+            android:name=".cliente.ProblemaActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarCliente"
+            android:name=".cliente.ListarClientesActivity"
             android:exported="false" />
         <activity
-            android:name=".EditarTallerActivity2"
+            android:name=".cliente.AgregarCliente"
             android:exported="false" />
         <activity
-            android:name=".ListarTalleresActivity2"
+            android:name=".taller.EditarTallerActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".taller.ListarTalleresActivity2"
             android:exported="false" />
         <activity
             android:name=".ListarTalleres"
             android:exported="false" />
         <activity
-            android:name=".CrearTaller"
+            android:name=".taller.CrearTaller"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

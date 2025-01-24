@@ -1,6 +1,5 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.taller
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -13,13 +12,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.dataclass.Taller
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import io.appwrite.Client
 import io.appwrite.ID
 import io.appwrite.models.InputFile
 import io.appwrite.services.Storage
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -93,7 +94,8 @@ class CrearTaller : AppCompatActivity() {
                 Toast.makeText(this, "Año de fundación no válido", Toast.LENGTH_SHORT).show()
             } else if (Util.existeTaller(
                     lista_taller,
-                    nombre.text.toString())
+                    nombre.text.toString()
+                )
             ) {
                 Toast.makeText(this, "Taller ya existe", Toast.LENGTH_SHORT).show()
             }else if (rating.rating <=0) {

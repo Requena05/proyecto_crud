@@ -1,6 +1,5 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.cliente
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -8,13 +7,10 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.dataclass.Cliente
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.childEvents
-import com.google.firebase.database.values
-import kotlinx.coroutines.flow.filter
 
 class ProblemaActivity : AppCompatActivity() {
     private lateinit var editar_problema: AppCompatButton

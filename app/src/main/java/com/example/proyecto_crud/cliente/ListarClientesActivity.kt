@@ -1,20 +1,20 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.cliente
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.adaptadores.AdaptadorCliente
+import com.example.proyecto_crud.dataclass.Cliente
+import com.example.proyecto_crud.dataclass.Taller
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

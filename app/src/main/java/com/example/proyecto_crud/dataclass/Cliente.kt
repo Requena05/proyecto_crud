@@ -1,7 +1,5 @@
-package com.example.proyecto_crud
-import android.widget.ImageView
+package com.example.proyecto_crud.dataclass
 import java.io.Serializable
-import java.util.Date
 
 data class Cliente(
         var nombre_cliente: String?="",

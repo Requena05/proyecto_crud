@@ -1,6 +1,6 @@
 package com.example.proyecto_crud
 
-import android.view.View.OnLongClickListener
+import com.example.proyecto_crud.dataclass.Cliente
 
 interface OnClickListener {
     fun OnLongClickListener(cliente: Cliente)

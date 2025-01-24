@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6EEF4"
+    tools:context=".partechat.ChatActivity">
+    <TextView
+        android:id="@+id/Cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Chat de citas"
+        android:layout_margin="20dp"
+        android:fontFamily="serif"
+        android:textSize="17sp"
+        android:background="@drawable/borderendondo"
+        android:gravity="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Cabecera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_mensajetaller"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

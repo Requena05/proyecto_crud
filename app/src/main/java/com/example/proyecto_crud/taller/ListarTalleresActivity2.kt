@@ -1,7 +1,6 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.taller
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -10,19 +9,18 @@ import android.widget.ImageView
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.adaptadores.AdaptadorTaller
+import com.example.proyecto_crud.dataclass.Taller
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import io.appwrite.Client
-import io.appwrite.services.Storage
 
 class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
     private lateinit var volver: Button
@@ -84,10 +82,10 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
                 busqueda.doOnTextChanged { text, start, count, after ->
                     //filtramos la lista por nombre letra por letra
                     lista_filtradaa=lista.filter { it.nombre!!.contains(text.toString(),true) } as MutableList<Taller>
-                    recycler.adapter=AdaptadorTaller(lista_filtradaa)
+                    recycler.adapter= AdaptadorTaller(lista_filtradaa)
                     recycler.adapter?.notifyDataSetChanged()
                     if(text.toString().isEmpty()){
-                        recycler.adapter=AdaptadorTaller(lista)
+                        recycler.adapter= AdaptadorTaller(lista)
                         recycler.adapter?.notifyDataSetChanged()
                     }
 

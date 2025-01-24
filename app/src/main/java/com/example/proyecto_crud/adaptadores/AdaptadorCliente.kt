@@ -1,4 +1,4 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.adaptadores
 
 import android.content.Context
 import android.content.Intent
@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyecto_crud.dataclass.Cliente
+import com.example.proyecto_crud.cliente.ProblemaActivity
+import com.example.proyecto_crud.R
 import com.google.firebase.database.FirebaseDatabase
-import io.appwrite.Client
-import io.appwrite.services.Storage
 
 class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): RecyclerView.Adapter<AdaptadorCliente.ClienteViewHolder>() {
     private lateinit var contexto: Context
@@ -46,17 +45,17 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
     override fun onBindViewHolder(holder: ClienteViewHolder, position: Int) {
         db_ref = FirebaseDatabase.getInstance()
                     val cliente_actual=lista_filtrada[position]
-                    holder.nombre.text=cliente_actual!!.nombre_cliente
-                    holder.matricula.text=cliente_actual.matricula_cliente
-                    holder.telefono.text=cliente_actual.numero_telefono_cliente.toString()
-                    holder.marca.text=cliente_actual.marca_coche_cliente
-                    holder.modelo.text=cliente_actual.modelo_coche_cliente
+                    holder.nombre.text = cliente_actual!!.nombre_cliente
+                    holder.matricula.text = cliente_actual.matricula_cliente
+                    holder.telefono.text = cliente_actual.numero_telefono_cliente.toString()
+                    holder.marca.text = cliente_actual.marca_coche_cliente
+                    holder.modelo.text = cliente_actual.modelo_coche_cliente
                     holder.color.setColorFilter(cliente_actual.color_coche_cliente!!.toInt())
 
 
         holder.boton_problema.setOnClickListener {
            //Crearemos una actividad donde se vea el problema y se pueda editar y eliminar (tambien se eliminara el cliente de la base de datos)
-            val intent = Intent(contexto,ProblemaActivity::class.java)
+            val intent = Intent(contexto, ProblemaActivity::class.java)
             intent.putExtra("Cliente",cliente_actual.matricula_cliente.toString())
             Log.d("matricula",cliente_actual.matricula_cliente.toString())
             contexto.startActivity(intent)

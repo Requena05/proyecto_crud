@@ -1,11 +1,10 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.taller
 
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
@@ -13,6 +12,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.proyecto_crud.R
+import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.dataclass.Taller
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -82,7 +84,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
         logo.setOnClickListener{
             accesoGaleria.launch("image/*")
         }
-        lista_taller=Util.obtenerListaTaller(database,this)
+        lista_taller= Util.obtenerListaTaller(database, this)
         boton_modificar.setOnClickListener {
             if (nombre.text!!.isEmpty() || ciudad.text!!.isEmpty()
                 || fundacion.text!!.isEmpty() || taller.rating==null
@@ -97,9 +99,9 @@ class EditarTallerActivity2 : AppCompatActivity() {
             ) {
                 Toast.makeText(this,"Año de fundacion no válido",Toast.LENGTH_SHORT).show()
             }else if(Util.existeTaller(
-                lista_taller,
-                nombre.text.toString()
-            ) && nombre.text.toString().lowercase() != taller.nombre!!.lowercase()){
+                    lista_taller,
+                    nombre.text.toString()
+                ) && nombre.text.toString().lowercase() != taller.nombre!!.lowercase()){
                 Toast.makeText(this, "Taller ya existe", Toast.LENGTH_SHORT).show()
 
             } else{
@@ -136,7 +138,7 @@ class EditarTallerActivity2 : AppCompatActivity() {
                         taller.url_logo=logo
                     }else if(nombre.text.toString()!=taller.nombre || ciudad.text.toString()!= taller.ciudad ||
                         fundacion.text.toString().toInt()!=taller.fundacion!! || rating.rating!=taller.rating!!){
-                        val Taller=Taller(
+                        val Taller= Taller(
                             identificador_taller,
                             nombre.text.toString(),
                             ciudad.text.toString(),
@@ -145,9 +147,11 @@ class EditarTallerActivity2 : AppCompatActivity() {
                             taller.id_logo,
                             rating.rating
                         )
-                        Util.escribirTaller(database,identificador_taller!!,Taller)
-                        Util.tostadaCorrutina(activity,applicationContext,
-                            "Taller actualizado con éxito")
+                        Util.escribirTaller(database, identificador_taller!!, Taller)
+                        Util.tostadaCorrutina(
+                            activity, applicationContext,
+                            "Taller actualizado con éxito"
+                        )
                     }
                 }
                 finish()

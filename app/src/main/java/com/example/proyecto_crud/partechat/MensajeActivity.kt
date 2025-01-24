@@ -1,10 +1,11 @@
-package com.example.proyecto_crud
+package com.example.proyecto_crud.partechat
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_crud.R
 
 class MensajeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
