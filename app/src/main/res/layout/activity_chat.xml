@@ -21,6 +21,7 @@
         android:background="@drawable/borderendondo"
         android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rview_mensajes_contenido"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
