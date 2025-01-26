@@ -63,6 +63,8 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<*>) : Rec
         }
 
 
+
+
     }
 
 }

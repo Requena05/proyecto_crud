@@ -48,6 +48,5 @@ class ChatActivity : AppCompatActivity() {
         db_ref= FirebaseDatabase.getInstance().reference
 
 
-
     }
 }
