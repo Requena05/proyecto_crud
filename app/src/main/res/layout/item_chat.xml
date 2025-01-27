@@ -29,18 +29,19 @@
         android:fontFamily="sans-serif-black"
         android:textSize="16sp"
         />
+
     <TextView
-        android:id="@+id/tipo_emisor"
+        android:id="@+id/emisor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imagen_emisor"
-        app:layout_constraintTop_toBottomOf="@id/nombre_emisor"
-        android:layout_marginStart="10dp"
-        android:text="Matricula o
- \n ciudad taller"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
+        android:text="Matricula"
         android:textSize="16sp"
-        />
+        app:layout_constraintStart_toEndOf="@id/imagen_emisor"
+        app:layout_constraintTop_toBottomOf="@id/nombre_emisor" />
+
     <ImageView
         android:id="@+id/contenido"
         android:layout_width="50dp"

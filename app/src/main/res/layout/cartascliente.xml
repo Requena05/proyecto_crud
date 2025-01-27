@@ -52,8 +52,20 @@
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@id/item_colorcoche"
+            app:layout_constraintStart_toEndOf="@id/item_chat"
             app:layout_constraintTop_toBottomOf="@id/item_nombre" />
+
+        <ImageView
+            android:id="@+id/item_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/comentario"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="@id/item_matricula"
+            app:layout_constraintStart_toEndOf="@id/item_colorcoche"
+            app:layout_constraintEnd_toStartOf="@id/item_matricula"
+            android:layout_marginStart="15dp"/>
+
 
         <TextView
             android:layout_width="wrap_content"

@@ -34,36 +34,36 @@ class MensajeAdaptador(private val lista_mensajes: List<Mensaje>, last_pos: Int)
         if (last_pos<lista_mensajes.size-1&&last_pos!=1&&last_pos!=100000&&position==last_pos){
             holder.pendientes.visibility = View.VISIBLE
         }
-
-
-        if(item_actual.id_emisor==item_actual.id_receptor){
-            //ES MIO,ASIGNAR A LA DERECHA Y YO
-            holder.otro.text=""
-            holder.hora_otro.text=""
-            holder.imagen_otro.visibility= View.INVISIBLE
-            holder.imagen_yo.visibility= View.VISIBLE
-            Glide.with(contexto)
-                .load(item_actual.)
-                .apply(Util.opcionesGlide(contexto))
-                .transition(Util.transicion)
-                .into(holder.imagen_yo)
-            holder.hora_yo.text=item_actual.fecha_hora
-            holder.yo.text=item_actual.contenido
-
-        }else{
-            //ES DE OTRO ASIGNAR A LA IZQUIERDA Y NOMBRE
-            holder.yo.text=""
-            holder.hora_yo.text=""
-            holder.imagen_yo.visibility= View.INVISIBLE
-            holder.imagen_otro.visibility= View.VISIBLE
-            Glide.with(contexto)
-                .load(item_actual.imagen_emisor)
-                .apply(Util.opcionesGlide(contexto))
-                .transition(Util.transicion)
-                .into(holder.imagen_otro)
-            holder.hora_otro.text=item_actual.fecha_hora
-            holder.otro.text=item_actual.contenido
-        }
+//
+//
+//        if(item_actual.id_emisor==item_actual.id_receptor){
+//            //ES MIO,ASIGNAR A LA DERECHA Y YO
+//            holder.otro.text=""
+//            holder.hora_otro.text=""
+//            holder.imagen_otro.visibility= View.INVISIBLE
+//            holder.imagen_yo.visibility= View.VISIBLE
+//            Glide.with(contexto)
+//                .load(item_actual.)
+//                .apply(Util.opcionesGlide(contexto))
+//                .transition(Util.transicion)
+//                .into(holder.imagen_yo)
+//            holder.hora_yo.text=item_actual.fecha_hora
+//            holder.yo.text=item_actual.contenido
+//
+//        }else{
+//            //ES DE OTRO ASIGNAR A LA IZQUIERDA Y NOMBRE
+//            holder.yo.text=""
+//            holder.hora_yo.text=""
+//            holder.imagen_yo.visibility= View.INVISIBLE
+//            holder.imagen_otro.visibility= View.VISIBLE
+//            Glide.with(contexto)
+//                .load(item_actual.imagen_emisor)
+//                .apply(Util.opcionesGlide(contexto))
+//                .transition(Util.transicion)
+//                .into(holder.imagen_otro)
+//            holder.hora_otro.text=item_actual.fecha_hora
+//            holder.otro.text=item_actual.contenido
+//        }
 
 
 
@@ -75,7 +75,7 @@ class MensajeAdaptador(private val lista_mensajes: List<Mensaje>, last_pos: Int)
 
     class MensajeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val yo: TextView = itemView.findViewById(R.id.)
+//        val yo: TextView = itemView.findViewById(R.id.)
         val otro: TextView = itemView.findViewById(R.id.otro)
         val imagen_otro: ImageView = itemView.findViewById(R.id.imagen_otro)
         val imagen_yo: ImageView = itemView.findViewById(R.id.imagen_yo)

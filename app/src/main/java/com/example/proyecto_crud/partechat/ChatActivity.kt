@@ -24,16 +24,16 @@ import io.appwrite.services.Storage
 class ChatActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: EleccionChatAdapter
-    private lateinit var lista:MutableList<*>
+    private lateinit var lista:MutableList<Cliente>
     private lateinit var db_ref: DatabaseReference
     private lateinit var logotaller: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        lista= mutableListOf<Cliente>()
+        lista= mutableListOf()
         setContentView(R.layout.activity_chat)
-        recyclerView = findViewById(R.id.rview_mensajes)
+//        recyclerView = findViewById(R.id.rview_mensajes)
         adapter = EleccionChatAdapter(lista)
 
         recyclerView.adapter = adapter

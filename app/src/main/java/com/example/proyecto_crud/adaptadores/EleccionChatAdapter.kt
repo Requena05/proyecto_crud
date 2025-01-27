@@ -14,7 +14,7 @@ import com.example.proyecto_crud.dataclass.Taller
 import com.example.proyecto_crud.partechat.ChatActivity
 import com.google.firebase.database.FirebaseDatabase
 
-class EleccionChatAdapter (private val lista_eleccionchat: MutableList<*>) : RecyclerView.Adapter<EleccionChatAdapter.EleccionChatViewHolder>() {
+class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>) : RecyclerView.Adapter<EleccionChatAdapter.EleccionChatViewHolder>() {
     private lateinit var contexto: Context
     private lateinit var db_ref: FirebaseDatabase
     private var lista_filtrada=lista_eleccionchat
@@ -24,7 +24,7 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<*>) : Rec
         val op_eleccionchat: ImageView = itemView.findViewById(R.id.opciones)
         val imagen_eleccionchat: ImageView = itemView.findViewById(R.id.imagen_emisor)
         val nombre_eleccionchat: TextView = itemView.findViewById(R.id.nombre_emisor)
-        val tipo_eleccionchat: TextView = itemView.findViewById(R.id.tipo_emisor)
+        val tipo_eleccionchat: TextView = itemView.findViewById(R.id.emisor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EleccionChatViewHolder {
@@ -42,25 +42,18 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<*>) : Rec
 
         db_ref = FirebaseDatabase.getInstance()
         val cliente_actual=lista_filtrada[position]
-        val taller_actual=lista_filtrada[position]
-
-        if (cliente_actual is Cliente) {
-            holder.boton_eleccionchat.setImageResource(R.drawable.comentario)
-            holder.op_eleccionchat.setImageResource(R.drawable.trespunto)
-            holder.imagen_eleccionchat.setImageResource(R.drawable.usuario)
-            holder.nombre_eleccionchat.text=cliente_actual.nombre_cliente
-            holder.tipo_eleccionchat.text=cliente_actual.matricula_cliente
-            holder.boton_eleccionchat.setOnClickListener {
-                val intent = Intent(contexto, ChatActivity::class.java)
-                contexto.startActivity(intent)
-            }
-        }else if (taller_actual is Taller){
-            holder.boton_eleccionchat.setImageResource(R.drawable.comentario)
-            holder.op_eleccionchat.setImageResource(R.drawable.trespunto)
-            holder.imagen_eleccionchat.setImageResource(R.drawable.logoflashfix)
-            holder.nombre_eleccionchat.text=taller_actual.nombre
-            holder.tipo_eleccionchat.text=taller_actual.ciudad
+        holder.nombre_eleccionchat.text=cliente_actual.nombre_cliente
+        holder.tipo_eleccionchat.text=cliente_actual.matricula_cliente
+        holder.imagen_eleccionchat.setImageResource(R.drawable.usuario)
+        holder.boton_eleccionchat.setOnClickListener {
+            val intent = Intent(contexto, ChatActivity::class.java)
+            intent.putExtra("nombre_cliente", cliente_actual.nombre_cliente)
+            intent.putExtra("matricula_cliente", cliente_actual.matricula_cliente)
+            contexto.startActivity(intent)
         }
+
+
+
 
 
 
