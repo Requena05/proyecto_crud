@@ -5,7 +5,7 @@ import com.example.proyecto_crud.dataclass.Taller
 
 interface OnClickListener {
     //Cuando el usuario pulse en la foto del taller saldran en el otro recycler sus clientes asociados
-    fun onClickTaller(taller: Taller)
+    fun onClick(taller: Taller)
 
 
 

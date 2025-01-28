@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyecto_crud.cliente.AgregarCliente
@@ -26,9 +27,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView.Adapter<AdaptadorTaller.TallerViewHolder>(){
+class AdaptadorTaller(private val lista_taller:MutableList<Taller>,last_pos:Int):RecyclerView.Adapter<AdaptadorTaller.TallerViewHolder>(){
     private lateinit var contexto:Context
     private var lista_filtrada=lista_taller
+    private var last_pos=last_pos
 
     inner class TallerViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val miniatura: ImageView = itemView.findViewById(R.id.item_miniatura)
@@ -62,10 +64,10 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
 
         holder.boton_foro.setOnClickListener{
             val intent=Intent(contexto, ChatActivity::class.java)
-            intent.putExtra("Taller",taller_actual.id)
-            contexto.startActivity(intent)
+            intent.putExtra("Taller", taller_actual)
+            intent.putExtra("LAST_POS", last_pos)
+            contexto.startActivity (intent)
         }
-
         Log.d("Nombre",taller_actual.nombre.toString())
 
         val URL:String?=when(taller_actual.url_logo){

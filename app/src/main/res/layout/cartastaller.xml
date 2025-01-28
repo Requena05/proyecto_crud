@@ -38,8 +38,8 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/item_miniatura"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="item_foro"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/item_foro"
             android:layout_width="50dp"

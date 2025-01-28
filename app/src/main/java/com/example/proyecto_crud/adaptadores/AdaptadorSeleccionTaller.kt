@@ -8,17 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.proyecto_crud.OnClickListener
 import com.example.proyecto_crud.R
 import com.example.proyecto_crud.Util
 import com.example.proyecto_crud.dataclass.Taller
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
 
 class AdaptadorSeleccionTaller(
     private val lista_elecciontaller: MutableList<Taller>,
-    private val applicationContext: Context,
-
+    private val applicationContext: Context, private val listener: OnClickListener
 ) : RecyclerView.Adapter<AdaptadorSeleccionTaller.SeleccionTallerViewHolder>() {
 
         inner class SeleccionTallerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -46,9 +45,10 @@ class AdaptadorSeleccionTaller(
             .transition(Util.transicion)
             .into(holder.imagen_taller)
 
-        Log.d("Logo",logo.toString())
+        holder.imagen_taller.setOnClickListener {
+            listener!!.onClick(lista_elecciontaller[position])
 
-
+        }
     }
 
 }

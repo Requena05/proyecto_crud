@@ -82,10 +82,10 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
                 busqueda.doOnTextChanged { text, start, count, after ->
                     //filtramos la lista por nombre letra por letra
                     lista_filtradaa=lista.filter { it.nombre!!.contains(text.toString(),true) } as MutableList<Taller>
-                    recycler.adapter= AdaptadorTaller(lista_filtradaa)
+                    recycler.adapter= AdaptadorTaller(lista_filtradaa,0)
                     recycler.adapter?.notifyDataSetChanged()
                     if(text.toString().isEmpty()){
-                        recycler.adapter= AdaptadorTaller(lista)
+                        recycler.adapter= AdaptadorTaller(lista,0)
                         recycler.adapter?.notifyDataSetChanged()
                     }
 
@@ -98,7 +98,7 @@ class ListarTalleresActivity2<MyApplication> : AppCompatActivity() {
                 println(error.message)
             }
         })
-    adaptador= AdaptadorTaller(lista)
+    adaptador= AdaptadorTaller(lista,0)
     recycler.adapter=adaptador
     recycler.setHasFixedSize(true)
     recycler.layoutManager=LinearLayoutManager(applicationContext)

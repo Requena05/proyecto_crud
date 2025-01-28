@@ -47,7 +47,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        taller_actual = intent.getParcelableExtra<Taller>("Taller")!!
+        taller_actual = intent.getParcelableExtra<Taller>("Taller") as Taller
         last_pos = intent.getIntExtra("LAST_POS", 100000)
         Log.d("LASTTT_POS_LLEGAMOS", last_pos.toString())
         db_ref = FirebaseDatabase.getInstance().getReference()
@@ -64,7 +64,7 @@ class ChatActivity : AppCompatActivity() {
                 val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
                 val fecha_hora = formateador.format(hoy.getTime());
 
-                val id_mensaje = db_ref.child("chat").child("mensajes").push().key!!
+                val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
                 val nuevo_mensaje = Mensaje(
                     id_mensaje,
                     taller_actual.id,
@@ -73,14 +73,14 @@ class ChatActivity : AppCompatActivity() {
                     mensaje,
                     fecha_hora,
                 )
-                db_ref.child("chat").child("mensajes").child(id_mensaje).setValue(nuevo_mensaje)
+                db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
                 mensaje_enviado.setText("")
             } else {
                 Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
             }
 
         }
-        db_ref.child("chat").child("mensajes").addChildEventListener(object : ChildEventListener {
+        db_ref.child("Motor").child("mensajes").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 GlobalScope.launch(Dispatchers.IO) {
                     val pojo_mensaje = snapshot.getValue(Mensaje::class.java)
@@ -149,14 +149,6 @@ class ChatActivity : AppCompatActivity() {
 
 
 
-    }
-    override fun onBackPressed() {
-        finish()
-        val actividad = Intent(applicationContext,MensajeActivity::class.java)
-        last_pos = lista.size
-        actividad.putExtra("LAST_POS", last_pos)
-        Log.d("LASTTT_POS_ATRAS",last_pos.toString())
-        startActivity (actividad)
     }
 
 }

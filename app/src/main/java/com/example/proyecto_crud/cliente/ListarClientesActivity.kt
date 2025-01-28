@@ -103,7 +103,6 @@ class ListarClientesActivity : AppCompatActivity() {
                     println(error.message)
                 }
             })
-        Log.d("Lista aaaaa",lista.toString())
         adaptador= AdaptadorCliente(lista)
         recycler.adapter=adaptador
         adaptador.notifyDataSetChanged()
