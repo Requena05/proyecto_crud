@@ -18,6 +18,7 @@ import com.example.proyecto_crud.cliente.ListarClientesActivity
 import com.example.proyecto_crud.R
 import com.example.proyecto_crud.dataclass.Taller
 import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.partechat.ChatActivity
 import com.google.firebase.database.FirebaseDatabase
 import io.appwrite.Client
 import io.appwrite.services.Storage
@@ -39,6 +40,7 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         val rating: RatingBar = itemView.findViewById(R.id.estrellas)
         val agregar: ImageView = itemView.findViewById(R.id.item_add)
         val lista: ImageView = itemView.findViewById(R.id.lista)
+        val boton_foro: ImageView = itemView.findViewById(R.id.item_foro)
     }
 
 
@@ -57,6 +59,13 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>):RecyclerView
         holder.ciudad.text=taller_actual.ciudad
         holder.fundacion.text=taller_actual.fundacion.toString()
         holder.rating.rating=taller_actual.rating!!
+
+        holder.boton_foro.setOnClickListener{
+            val intent=Intent(contexto, ChatActivity::class.java)
+            intent.putExtra("Taller",taller_actual.id)
+            contexto.startActivity(intent)
+        }
+
         Log.d("Nombre",taller_actual.nombre.toString())
 
         val URL:String?=when(taller_actual.url_logo){

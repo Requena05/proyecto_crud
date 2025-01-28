@@ -6,17 +6,26 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.proyecto_crud.adaptadores.AdaptadorCliente
 import com.example.proyecto_crud.adaptadores.AdaptadorSeleccionTaller
 
 import com.example.proyecto_crud.databinding.ActivityMensajeBinding
+import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.dataclass.Taller
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 
 class MensajeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMensajeBinding
     private lateinit var Logosseleccion: AdaptadorSeleccionTaller
     private lateinit var db_ref: DatabaseReference
+    private lateinit var recycler: RecyclerView
+    private lateinit var lista:MutableList<Cliente>
+    private lateinit var sto_ref: StorageReference
+    private lateinit var adaptador: AdaptadorCliente
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,21 +44,11 @@ class MensajeActivity : AppCompatActivity() {
                     val taller = tallerSnapshot.getValue(Taller::class.java)
                     if (taller != null) {
                         talleres.add(taller)
-                    }else{
-                        Toast.makeText(this,"No hay talleres disponibles",Toast.LENGTH_SHORT)
+                    } else {
+                        Toast.makeText(this, "No hay talleres disponibles", Toast.LENGTH_SHORT)
                     }
                 }
             }
-//            var imagenestaller: MutableList<String>
-//            imagenestaller = mutableListOf()
-//
-//            talleres.forEach {
-//                if(it.id_logo!=null){
-//                  imagenestaller.add(it.id_logo!!)
-//                }
-//            }
-
-
             Log.d("Talleres", talleres.size.toString())
             Logosseleccion = AdaptadorSeleccionTaller(talleres, applicationContext)
 
@@ -58,8 +57,12 @@ class MensajeActivity : AppCompatActivity() {
                 layoutManager =
                     LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                 adapter = Logosseleccion
+                setHasFixedSize(true)
+                //se tiene que poder clickar en las fotos de los talleres y actualizar el otro recycler con los clientes asociados
 
             }
         }
+
+
     }
 }

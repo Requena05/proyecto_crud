@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.cliente.ProblemaActivity
 import com.example.proyecto_crud.R
+import com.example.proyecto_crud.partechat.ChatActivity
 import com.google.firebase.database.FirebaseDatabase
 
 class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): RecyclerView.Adapter<AdaptadorCliente.ClienteViewHolder>() {
@@ -51,6 +52,7 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
                     holder.marca.text = cliente_actual.marca_coche_cliente
                     holder.modelo.text = cliente_actual.modelo_coche_cliente
                     holder.color.setColorFilter(cliente_actual.color_coche_cliente!!.toInt())
+
 
 
         holder.boton_problema.setOnClickListener {
