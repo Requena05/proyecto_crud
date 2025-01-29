@@ -1,6 +1,9 @@
 package com.example.proyecto_crud.dataclass
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class Cliente(
         var nombre_cliente: String?="",
         var matricula_cliente: String?="",
@@ -10,5 +13,8 @@ data class Cliente(
         var color_coche_cliente: String?="",
         var problema_cliente: String?="",
         var id_taller: String?="",
-    ):Serializable
+        var id_cliente: String?="",
+        var url_foto_cliente: String?="",
+
+    ):Parcelable
 

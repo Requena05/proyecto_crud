@@ -46,7 +46,7 @@ class AdaptadorSeleccionTaller(
             .into(holder.imagen_taller)
 
         holder.imagen_taller.setOnClickListener {
-            listener!!.onClick(lista_elecciontaller[position])
+            listener?.onClick(lista_elecciontaller[position])
 
         }
     }

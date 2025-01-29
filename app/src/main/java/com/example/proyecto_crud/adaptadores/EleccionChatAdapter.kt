@@ -12,11 +12,12 @@ import com.example.proyecto_crud.R
 import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.dataclass.Taller
 import com.example.proyecto_crud.partechat.ChatActivity
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>) : RecyclerView.Adapter<EleccionChatAdapter.EleccionChatViewHolder>() {
     private lateinit var contexto: Context
-    private lateinit var db_ref: FirebaseDatabase
+    private lateinit var db_ref: DatabaseReference
     private var lista_filtrada=lista_eleccionchat
 
     inner class EleccionChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -28,7 +29,7 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EleccionChatViewHolder {
-        val vista_item= LayoutInflater.from(parent.context).inflate(R.layout.cartascliente,parent,false)
+        val vista_item= LayoutInflater.from(parent.context).inflate(R.layout.item_chat,parent,false)
         contexto=parent.context
 
         return EleccionChatViewHolder(vista_item)
@@ -40,17 +41,29 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>)
 
     override fun onBindViewHolder(holder: EleccionChatViewHolder, position: Int) {
 
-        db_ref = FirebaseDatabase.getInstance()
+        db_ref = FirebaseDatabase.getInstance().reference
         val cliente_actual=lista_filtrada[position]
         holder.nombre_eleccionchat.text=cliente_actual.nombre_cliente
         holder.tipo_eleccionchat.text=cliente_actual.matricula_cliente
         holder.imagen_eleccionchat.setImageResource(R.drawable.usuario)
+        holder.boton_eleccionchat.setImageResource(R.drawable.comentario)
+
+
+
         holder.boton_eleccionchat.setOnClickListener {
             val intent = Intent(contexto, ChatActivity::class.java)
-            intent.putExtra("nombre_cliente", cliente_actual.nombre_cliente)
-            intent.putExtra("matricula_cliente", cliente_actual.matricula_cliente)
-            contexto.startActivity(intent)
-        }
+            intent.putExtra("nombre_emisor",cliente_actual.nombre_cliente)
+            intent.putExtra("id_emisor_cliente",cliente_actual)
+            db_ref.child("Motor").child("Talleres").child(cliente_actual.id_taller!!).get().addOnSuccessListener {
+                if(it.exists()){
+                    val taller=it.getValue(Taller::class.java)
+                    intent.putExtra("Taller",taller)
+                    //intent.putExtra("id_emisor",cliente_actual.id_cliente)
+                    contexto.startActivity(intent)
+                }
+            }
+
+            }
 
 
     }

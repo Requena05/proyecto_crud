@@ -41,13 +41,21 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var db_ref: DatabaseReference
     private lateinit var mensaje_enviado: EditText
     private lateinit var boton_enviar: Button
-    private lateinit var taller_actual: Taller
     private var last_pos: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        taller_actual = intent.getParcelableExtra<Taller>("Taller") as Taller
+        setContentView(R.layout.activity_chat)
+
+        var taller_actual = intent.getParcelableExtra<Taller>("id_emisor_taller")
+        var usuario_actual = intent.getParcelableExtra<Cliente>("id_emisor_cliente")
+        val intent = intent
+
+        Log.d("id_emisor", taller_actual.toString())
+        Log.d("id_emisor2", usuario_actual.toString())
+        //Log.d("id_emisor3", item_actual.toString())
+
         last_pos = intent.getIntExtra("LAST_POS", 100000)
         Log.d("LASTTT_POS_LLEGAMOS", last_pos.toString())
         db_ref = FirebaseDatabase.getInstance().getReference()
@@ -58,45 +66,69 @@ class ChatActivity : AppCompatActivity() {
         boton_enviar.setOnClickListener {
             last_pos = 1
             val mensaje = mensaje_enviado.text.toString().trim()
-
+        if(usuario_actual==null){
             if (mensaje.trim() != "") {
                 val hoy: Calendar = Calendar.getInstance()
                 val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
                 val fecha_hora = formateador.format(hoy.getTime());
-
+                val nombre_emisor = intent.getStringExtra("nombre_emisor")
                 val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
                 val nuevo_mensaje = Mensaje(
                     id_mensaje,
-                    taller_actual.id,
+                    taller_actual?.id,
                     "",
                     "",
                     mensaje,
                     fecha_hora,
+                    nombre_emisor,
                 )
                 db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
                 mensaje_enviado.setText("")
             } else {
                 Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
             }
+        }else if(taller_actual==null){
+            if (mensaje.trim() != "") {
+                val hoy: Calendar = Calendar.getInstance()
+                val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                val fecha_hora = formateador.format(hoy.getTime());
+                val nombre_emisor = intent.getStringExtra("nombre_emisor")
+                val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
+                val nuevo_mensaje = Mensaje(
+                    id_mensaje,
+                    usuario_actual?.id_cliente,
+                    "",
+                    "",
+                    mensaje,
+                    fecha_hora,
+                    nombre_emisor,
+                )
+                db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
+                mensaje_enviado.setText("")
+            } else {
+                Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         }
         db_ref.child("Motor").child("mensajes").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 GlobalScope.launch(Dispatchers.IO) {
                     val pojo_mensaje = snapshot.getValue(Mensaje::class.java)
-                    pojo_mensaje!!.id_receptor = taller_actual.id
+                    pojo_mensaje!!.id_receptor = usuario_actual?.id_cliente
                     if(pojo_mensaje.id_receptor==pojo_mensaje.id_emisor){
-                        pojo_mensaje.imagen_emisor=taller_actual.url_logo
+                        pojo_mensaje.imagen_emisor=usuario_actual?.url_foto_cliente
                     }else{
 
                         var semaforo = CountDownLatch(1)
 
 
-                        db_ref.child("Motor").child("Talleres").child(pojo_mensaje.id_emisor!!)
+                        db_ref.child("Motor").child("Cliente").child(pojo_mensaje.id_emisor!!)
                             .addListenerForSingleValueEvent(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                    val taller = snapshot.getValue(Taller::class.java)
-                                    pojo_mensaje.imagen_emisor = taller!!.url_logo
+                                    val cliente = snapshot.getValue(Cliente::class.java)
+                                    pojo_mensaje.imagen_emisor = cliente?.url_foto_cliente
                                     semaforo.countDown()
                                 }
 
@@ -150,5 +182,10 @@ class ChatActivity : AppCompatActivity() {
 
 
     }
+    override fun onResume() {
+        super.onResume()
+        recycler.adapter!!.notifyDataSetChanged()
+    }
+
 
 }

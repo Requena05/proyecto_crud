@@ -38,6 +38,7 @@ class AgregarCliente : AppCompatActivity() {
     private lateinit var marca_coche : TextInputEditText
     private lateinit var problema_coche: TextInputEditText
     private lateinit var colorseleccionado: ImageView
+    private lateinit var id_cliente: String
 
     private lateinit var Botoncolores:AppCompatButton
     private lateinit var antiguedad:String
@@ -64,6 +65,7 @@ class AgregarCliente : AppCompatActivity() {
         problema_coche=findViewById(R.id.problemacochecliente)
         antiguedad = Util.obtenerFechaActual()
         boton_crear=findViewById(R.id.agregarcliente)
+
         var activity = this
         //firebase
         database = FirebaseDatabase.getInstance().reference
@@ -97,7 +99,7 @@ class AgregarCliente : AppCompatActivity() {
                 Toast.makeText(this, "Cliente con ese coche afectado ya existe", Toast.LENGTH_SHORT)
                     .show()
             }else {
-                val identificador_cliente = database.child("Motor").child("Cliente").child("matricula").push().key
+                val identificador_cliente = database.child("Motor").child("Cliente").push().key
                 val id_taller= intent.getStringExtra("Taller")
                 GlobalScope.launch(Dispatchers.IO) {
                     val cliente = Cliente(
@@ -108,7 +110,10 @@ class AgregarCliente : AppCompatActivity() {
                         modelo_coche.text.toString(),
                         selectedColor.toString(),
                         problema_coche.text.toString(),
-                        id_taller
+                        id_taller,
+                        identificador_cliente,
+
+
                     )
 
                     Util.escribirCliente(database, identificador_cliente!!, cliente)

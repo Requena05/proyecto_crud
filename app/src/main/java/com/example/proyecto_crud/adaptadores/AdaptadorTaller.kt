@@ -65,8 +65,11 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>,last_pos:Int)
         holder.boton_foro.setOnClickListener{
             val intent=Intent(contexto, ChatActivity::class.java)
             intent.putExtra("Taller", taller_actual)
+            intent.putExtra("tipo", "Taller")
             intent.putExtra("LAST_POS", last_pos)
+            intent.putExtra("id_emisor_taller", taller_actual)
             contexto.startActivity (intent)
+
         }
         Log.d("Nombre",taller_actual.nombre.toString())
 
