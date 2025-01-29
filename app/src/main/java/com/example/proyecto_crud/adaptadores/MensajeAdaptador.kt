@@ -58,11 +58,19 @@ class MensajeAdaptador(private val lista_mensajes: MutableList<Mensaje>, last_po
             holder.hora_otro.text=""
             holder.imagen_otro.visibility=View.INVISIBLE
             holder.imagen_yo.visibility=View.VISIBLE
-            Glide.with(contexto)
-                .load(item_actual.imagen_emisor)
-                .apply(Util.opcionesGlide(contexto))
-                .transition(Util.transicion)
-                .into(holder.imagen_yo)
+
+                val URL: String? = when (item_actual.imagen_emisor) {
+                    "" -> null
+                    else -> (contexto?.applicationContext as? Taller)?.url_logo
+                }
+                Glide.with(contexto)
+                    .load(URL)
+                    .apply(Util.opcionesGlide(contexto))
+                    .transition(Util.transicion)
+                    .into(holder.imagen_yo)
+
+
+
             holder.hora_yo.text=item_actual.fecha_hora
             holder.yo.text=item_actual.contenido
             holder.nombre_yo.text=item_actual.nombre_emisor
@@ -74,11 +82,16 @@ class MensajeAdaptador(private val lista_mensajes: MutableList<Mensaje>, last_po
             holder.hora_yo.text=""
             holder.imagen_yo.visibility=View.INVISIBLE
             holder.imagen_otro.visibility=View.VISIBLE
+            val URL:String?=when(item_actual.imagen_emisor){
+                ""->null
+                else->(contexto as? Cliente)?.url_foto_cliente
+            }
             Glide.with(contexto)
-                .load(item_actual.imagen_emisor)
+                .load(URL)
                 .apply(Util.opcionesGlide(contexto))
                 .transition(Util.transicion)
                 .into(holder.imagen_otro)
+
             holder.hora_otro.text=item_actual.fecha_hora
             holder.otro.text=item_actual.contenido
             holder.nombre_otro.text=item_actual.nombre_emisor
