@@ -24,7 +24,7 @@
         android:elevation="2dp"
         />
 
-    <TextView
+    <EditText
         android:id="@+id/contenedor_problema"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,36 +34,50 @@
         app:layout_constraintTop_toBottomOf="@id/Cabecera"
         app:layout_constraintBottom_toTopOf="@id/editar_problema"
         android:text="AAAA"
-        android:textSize="25dp"
+        android:textSize="17sp"
         android:fontFamily="sans-serif-smallcaps"
         android:background="@color/white"
         android:elevation="2dp"
+        android:clickable="false"
+        android:gravity="top"
+
         />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editar_problema"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/eliminar_problema"
         android:background="@drawable/borderendondo"
         android:text="Editar Problema"
         android:layout_marginHorizontal="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editar_cliente"
         app:layout_constraintTop_toBottomOf="@id/contenedor_problema"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"
-        />
+        android:layout_marginBottom="50dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/editar_cliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderendondo"
+        android:text="Editar Cliente"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintStart_toEndOf="@id/editar_problema"
+        app:layout_constraintEnd_toStartOf="@id/eliminar_problema"
+        app:layout_constraintTop_toTopOf="@id/editar_problema"
+        app:layout_constraintBottom_toBottomOf="@id/editar_problema" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/eliminar_problema"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/editar_problema"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Problema Resuelto"
         android:background="@drawable/borderendondo"
-        app:layout_constraintTop_toTopOf="@id/editar_problema"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Problema Resuelto"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="50dp"/>
+        app:layout_constraintStart_toEndOf="@id/editar_cliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editar_cliente"
+        app:layout_constraintBottom_toBottomOf="@id/editar_cliente" />
 
 
 

@@ -66,49 +66,49 @@ class ChatActivity : AppCompatActivity() {
         boton_enviar.setOnClickListener {
             last_pos = 1
             val mensaje = mensaje_enviado.text.toString().trim()
-        if(usuario_actual==null){
-            if (mensaje.trim() != "") {
-                val hoy: Calendar = Calendar.getInstance()
-                val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                val fecha_hora = formateador.format(hoy.getTime());
-                val nombre_emisor = intent.getStringExtra("nombre_emisor")
-                val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
-                val nuevo_mensaje = Mensaje(
-                    id_mensaje,
-                    taller_actual?.id,
-                    "",
-                    "",
-                    mensaje,
-                    fecha_hora,
-                    nombre_emisor,
-                )
-                db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
-                mensaje_enviado.setText("")
-            } else {
-                Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
+            if(usuario_actual==null){
+                if (mensaje.trim() != "") {
+                    val hoy: Calendar = Calendar.getInstance()
+                    val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                    val fecha_hora = formateador.format(hoy.getTime());
+                    val nombre_emisor = intent.getStringExtra("nombre_emisor")
+                    val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
+                    val nuevo_mensaje = Mensaje(
+                        id_mensaje,
+                        taller_actual?.id,
+                        "",
+                        "",
+                        mensaje,
+                        fecha_hora,
+                        nombre_emisor,
+                    )
+                    db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
+                    mensaje_enviado.setText("")
+                } else {
+                    Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
+                }
+            }else if(taller_actual==null){
+                if (mensaje.trim() != "") {
+                    val hoy: Calendar = Calendar.getInstance()
+                    val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                    val fecha_hora = formateador.format(hoy.getTime());
+                    val nombre_emisor = intent.getStringExtra("nombre_emisor")
+                    val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
+                    val nuevo_mensaje = Mensaje(
+                        id_mensaje,
+                        usuario_actual?.id_cliente,
+                        "",
+                        "",
+                        mensaje,
+                        fecha_hora,
+                        nombre_emisor,
+                    )
+                    db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
+                    mensaje_enviado.setText("")
+                } else {
+                    Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
+                }
             }
-        }else if(taller_actual==null){
-            if (mensaje.trim() != "") {
-                val hoy: Calendar = Calendar.getInstance()
-                val formateador: SimpleDateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                val fecha_hora = formateador.format(hoy.getTime());
-                val nombre_emisor = intent.getStringExtra("nombre_emisor")
-                val id_mensaje = db_ref.child("Motor").child("Mensajes").push().key
-                val nuevo_mensaje = Mensaje(
-                    id_mensaje,
-                    usuario_actual?.id_cliente,
-                    "",
-                    "",
-                    mensaje,
-                    fecha_hora,
-                    nombre_emisor,
-                )
-                db_ref.child("Motor").child("mensajes").child(id_mensaje!!).setValue(nuevo_mensaje)
-                mensaje_enviado.setText("")
-            } else {
-                Toast.makeText(applicationContext, "Escribe algo", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
         }
@@ -123,19 +123,36 @@ class ChatActivity : AppCompatActivity() {
 
                         var semaforo = CountDownLatch(1)
 
+                        if (pojo_mensaje.id_receptor == usuario_actual?.id_cliente) {
 
-                        db_ref.child("Motor").child("Cliente").child(pojo_mensaje.id_emisor!!)
-                            .addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val cliente = snapshot.getValue(Cliente::class.java)
-                                    pojo_mensaje.imagen_emisor = cliente?.url_foto_cliente
-                                    semaforo.countDown()
-                                }
+                            db_ref.child("Motor").child("Cliente").child(pojo_mensaje.id_emisor!!)
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val cliente = snapshot.getValue(Cliente::class.java)
+                                        pojo_mensaje.imagen_emisor = cliente?.url_foto_cliente
+                                        semaforo.countDown()
+                                    }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    println(error.message)
-                                }
-                            })
+                                    override fun onCancelled(error: DatabaseError) {
+                                        println(error.message)
+                                    }
+                                })
+                        }else if (pojo_mensaje.id_receptor == taller_actual?.id){
+                            db_ref.child("Motor").child("Taller").child(pojo_mensaje.id_emisor!!)
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val cliente = snapshot.getValue(Taller::class.java)
+                                        pojo_mensaje.imagen_emisor = cliente?.url_logo
+                                        semaforo.countDown()
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        println(error.message)
+                                    }
+                                })
+                        }
+
+
                         semaforo.await()
                     }
 

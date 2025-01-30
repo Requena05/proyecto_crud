@@ -19,6 +19,7 @@ import com.example.proyecto_crud.cliente.ListarClientesActivity
 import com.example.proyecto_crud.R
 import com.example.proyecto_crud.dataclass.Taller
 import com.example.proyecto_crud.Util
+import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.partechat.ChatActivity
 import com.google.firebase.database.FirebaseDatabase
 import io.appwrite.Client
@@ -63,12 +64,15 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>,last_pos:Int)
         holder.rating.rating=taller_actual.rating!!
 
         holder.boton_foro.setOnClickListener{
-            val intent=Intent(contexto, ChatActivity::class.java)
-            intent.putExtra("Taller", taller_actual)
-            intent.putExtra("tipo", "Taller")
-            intent.putExtra("LAST_POS", last_pos)
-            intent.putExtra("id_emisor_taller", taller_actual)
-            contexto.startActivity (intent)
+            var db_ref=FirebaseDatabase.getInstance().reference
+            val intent = Intent(contexto, ChatActivity::class.java)
+            intent.putExtra("nombre_emisor",taller_actual.nombre)
+            intent.putExtra("id_emisor_taller",taller_actual)
+          contexto.startActivity(intent)
+
+
+
+
 
         }
         Log.d("Nombre",taller_actual.nombre.toString())

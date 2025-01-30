@@ -36,7 +36,7 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>)
     }
 
     override fun getItemCount(): Int {
-      return lista_eleccionchat.size
+        return lista_eleccionchat.size
     }
 
     override fun onBindViewHolder(holder: EleccionChatViewHolder, position: Int) {
@@ -52,20 +52,13 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>)
 
         holder.boton_eleccionchat.setOnClickListener {
             val intent = Intent(contexto, ChatActivity::class.java)
-            intent.putExtra("nombre_emisor",cliente_actual.nombre_cliente)
-            intent.putExtra("id_emisor_cliente",cliente_actual)
-            db_ref.child("Motor").child("Talleres").child(cliente_actual.id_taller!!).get().addOnSuccessListener {
-                if(it.exists()){
-                    val taller=it.getValue(Taller::class.java)
-                    intent.putExtra("Taller",taller)
-                    //intent.putExtra("id_emisor",cliente_actual.id_cliente)
-                    contexto.startActivity(intent)
-                }
-            }
+            intent.putExtra("id_emisor_cliente", cliente_actual)
+            intent.putExtra("nombre_emisor", cliente_actual.nombre_cliente)
+            contexto.startActivity(intent)
 
-            }
-
+        }
 
     }
+
 
 }

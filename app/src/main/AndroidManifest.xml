@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Proyecto_CRUD"
         tools:targetApi="31">
         <activity
+            android:name=".cliente.EditarClienteActivity"
+            android:exported="false" />
+        <activity
             android:name=".partechat.ChatActivity"
             android:exported="false" />
         <activity

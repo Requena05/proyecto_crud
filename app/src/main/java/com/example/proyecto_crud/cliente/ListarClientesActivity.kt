@@ -82,10 +82,9 @@ class ListarClientesActivity : AppCompatActivity() {
         db_ref= FirebaseDatabase.getInstance().reference
         db_ref.child("Motor")
             .child("Cliente").addValueEventListener(object : ValueEventListener {
-                @SuppressLint("NotifyDataSetChanged")
+
                 override fun onDataChange(snapshot: DataSnapshot) {
                     lista.clear()
-
                     snapshot.children.forEach { hijo:DataSnapshot?  ->
                         val pojo_cliente = hijo?.getValue(Cliente::class.java)
                         Log.d("Cliente",pojo_cliente.toString())
