@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.cliente.ProblemaActivity
 import com.example.proyecto_crud.R
+import com.example.proyecto_crud.arreglos.ElegirMecanicoActivity
 import com.example.proyecto_crud.partechat.ChatActivity
 import com.google.firebase.database.FirebaseDatabase
 
@@ -30,6 +31,7 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
         val modelo: TextView = itemView.findViewById(R.id.item_modelo)
         val color: ImageView = itemView.findViewById(R.id.item_colorcoche)
         val boton_problema: AppCompatButton = itemView.findViewById(R.id.item_problema)
+        val listar_mecanicos: ImageView = itemView.findViewById(R.id.item_seleccionar_mecanico)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClienteViewHolder {
@@ -52,6 +54,11 @@ class AdaptadorCliente(private val lista_cliente:MutableList<Cliente>): Recycler
                     holder.marca.text = cliente_actual.marca_coche_cliente
                     holder.modelo.text = cliente_actual.modelo_coche_cliente
                     holder.color.setColorFilter(cliente_actual.color_coche_cliente!!.toInt())
+                    holder.listar_mecanicos.setOnClickListener {
+                        val intent = Intent(contexto, ElegirMecanicoActivity::class.java)
+                        intent.putExtra("id_cliente",cliente_actual.id_cliente.toString())
+                        contexto.startActivity(intent)
+                    }
 
 
 

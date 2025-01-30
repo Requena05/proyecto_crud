@@ -2,6 +2,7 @@ package com.example.proyecto_crud.adaptadores
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto_crud.R
+import com.example.proyecto_crud.cliente.EditarClienteActivity
 import com.example.proyecto_crud.dataclass.Cliente
 import com.example.proyecto_crud.dataclass.Taller
 import com.example.proyecto_crud.partechat.ChatActivity
@@ -56,6 +58,12 @@ class EleccionChatAdapter (private val lista_eleccionchat: MutableList<Cliente>)
             intent.putExtra("nombre_emisor", cliente_actual.nombre_cliente)
             contexto.startActivity(intent)
 
+        }
+        holder.op_eleccionchat.setOnClickListener {
+            val intent = Intent(contexto, EditarClienteActivity::class.java)
+            intent.putExtra("id_cliente", cliente_actual.id_cliente)
+            Log.d("id_cliente", cliente_actual.id_cliente.toString())
+            contexto.startActivity(intent)
         }
 
     }

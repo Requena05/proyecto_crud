@@ -70,20 +70,31 @@
             android:textColor="@color/black"
             />
 
+        <ImageView
+            android:id="@+id/item_seleccionar_mecanico"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/listar"
+            app:layout_constraintEnd_toStartOf="@id/item_marcacoche"
+            app:layout_constraintHorizontal_bias="0.181"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_colorcoche"/>
+
         <TextView
             android:id="@+id/item_marcacoche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/item_colorcoche"
-            app:layout_constraintEnd_toEndOf="@id/item_colorcoche"
-            app:layout_constraintTop_toBottomOf="@id/item_colorcoche"
-            android:text="Marca del coche"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:textSize="20dp"
-            android:textColor="@color/black"
             android:layout_marginStart="80dp"
-            />
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Marca del coche"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@id/item_colorcoche"
+            app:layout_constraintHorizontal_bias="0.305"
+            app:layout_constraintStart_toStartOf="@id/item_colorcoche"
+            app:layout_constraintTop_toBottomOf="@id/item_colorcoche" />
+
         <TextView
             android:id="@+id/item_modelo"
             android:layout_width="wrap_content"

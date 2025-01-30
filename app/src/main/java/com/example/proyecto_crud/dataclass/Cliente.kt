@@ -15,6 +15,9 @@ data class Cliente(
         var id_taller: String?="",
         var id_cliente: String?="",
         var url_foto_cliente: String?="",
+        //mutable list de hash map
+        var listamecanicos: MutableList<String>?=null,
+//        var listamecanicos: HashMap<String,String>?= null,
 
     ):Parcelable
 

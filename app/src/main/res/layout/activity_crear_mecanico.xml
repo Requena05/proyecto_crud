@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".arreglos.CrearMecanicoActivity"
+    android:padding="25dp"
+    android:background="#E3F2FD"
+    >
+    <TextView
+        android:id="@+id/agregarMecanico"
+        android:layout_width="match_parent"
+        android:text="Agregar Mecanico"
+        android:layout_height="60dp"
+        android:background="@drawable/borderendondo"
+        android:elevation="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:textFontWeight="900"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/agregarMecanico"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="60dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/camponombremecanico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Cabecera"
+            android:layout_marginTop="15dp"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:background="@drawable/borderedondo_creacioncliente"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombremecanico"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Nombre del Mecanico"
+                android:textAlignment="textStart"
+                android:textSize="20dp"
+                android:textFontWeight="700"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campoapellidomecanico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camponombremecanico"
+            android:layout_marginTop="15dp"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:background="@drawable/borderedondo_creacioncliente"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apellidomecanico"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Apellido del mecanico"
+                android:textAlignment="textStart"
+                android:textSize="20dp"
+                android:textFontWeight="700"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campocorreomecanico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/campoapellidomecanico"
+            android:layout_marginTop="15dp"
+            android:elevation="2dp"
+            app:boxBackgroundMode="none"
+            android:background="@drawable/borderedondo_creacioncliente"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/correomecanico"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="correo del mecanico"
+                android:textAlignment="textStart"
+                android:textSize="20dp"
+                android:textFontWeight="700"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agregarcliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/coloryfechallegadacoche"
+            android:background="@drawable/bordebototn"
+            android:text="Agregar Mecanico"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textFontWeight="900"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

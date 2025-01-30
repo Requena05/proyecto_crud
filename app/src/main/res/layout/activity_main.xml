@@ -77,14 +77,26 @@
                 android:textSize="20dp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tiendaOnline"
+                android:id="@+id/Arreglos"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/bordeboton3"
                 android:elevation="5dp"
                 android:fontFamily="serif-monospace"
-                android:text="Muchos mecanicos con muchos arreglos"
+                android:text="Arreglos"
+                android:textColor="@color/black"
+                android:textFontWeight="900"
+                android:textSize="20dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/crearmecanico"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/bordeboton3"
+                android:elevation="5dp"
+                android:fontFamily="serif-monospace"
+                android:text="Crear Mecanicos"
                 android:textColor="@color/black"
                 android:textFontWeight="900"
                 android:textSize="20dp" />
