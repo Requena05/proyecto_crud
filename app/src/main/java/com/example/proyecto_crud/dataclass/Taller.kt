@@ -13,6 +13,6 @@ data class Taller(
     var id_logo: String? = "",
     var rating: Float? = 0.0f,
     var fecha_creado:String?="",
-    var matriculas_clientes:MutableList<String>?= mutableListOf()
+    var id_cliente:String?=""
 
 ):Parcelable

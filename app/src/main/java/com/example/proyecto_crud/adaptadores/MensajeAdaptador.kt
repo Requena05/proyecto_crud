@@ -42,15 +42,15 @@ class MensajeAdaptador(private val lista_mensajes: MutableList<Mensaje>, last_po
         if (last_pos<lista_mensajes.size-1&&last_pos!=1&&last_pos!=100000&&position==last_pos){
             holder.pendientes.visibility = View.VISIBLE
         }
+
+        var intent= (contexto as ChatActivity).intent
+        intent.getStringExtra("item_emisor_cliente")
+        intent.getStringExtra("item_emisor_taller")
+        if(item_actual.id_receptor==null){
+            item_actual.id_receptor=intent.getStringExtra("id_emisor_taller")
+        }
         Log.d("Mensaje",item_actual.id_emisor.toString())
         Log.d("Mensaje2",item_actual.id_receptor.toString())
-        Log.d("Mensaje3",item_actual.id.toString())
-        Log.d("Mensaje4",item_actual.nombre_emisor.toString())
-        var intent= (contexto as ChatActivity).intent
-        var id_emisor=intent.getStringExtra("id_emisor")
-        Log.d("Mensaje5",id_emisor.toString())
-
-
 
         if(item_actual.id_emisor==item_actual.id_receptor){
             //ES MIO,ASIGNAR A LA DERECHA Y YO
@@ -58,19 +58,37 @@ class MensajeAdaptador(private val lista_mensajes: MutableList<Mensaje>, last_po
             holder.hora_otro.text=""
             holder.imagen_otro.visibility=View.INVISIBLE
             holder.imagen_yo.visibility=View.VISIBLE
+            if(item_actual.id_emisor==intent.getStringExtra("id_emisor_taller")){
+                db_ref=FirebaseDatabase.getInstance().reference
+                var taller_actual=Taller(
+                    intent.getStringExtra("id_emisor_taller"),
+                    intent.getStringExtra("nombre_emisor"),
+                    intent.getStringExtra("ciudad_emisor"),
+                    intent.getIntExtra(("fundacion_emisor"),
+                        0),
+                    intent.getStringExtra("url_logo_emisor"),
+                    "",
+                    0f,
 
-                val URL: String? = when (item_actual.imagen_emisor) {
-                    "" -> null
-                    else -> (contexto?.applicationContext as? Taller)?.url_logo
+                )
+                val URL:String?=when(taller_actual.url_logo){
+                    ""->null
+                    else->taller_actual.url_logo
                 }
+                Log.d("Url",URL.toString())
                 Glide.with(contexto)
                     .load(URL)
                     .apply(Util.opcionesGlide(contexto))
                     .transition(Util.transicion)
                     .into(holder.imagen_yo)
-
-
-
+            }else{
+                val URL:String?="https://cloud.appwrite.io/v1/storage/buckets/6759d837002a69ef194d/files/679a82e0003d1cb091c7/view?project=6759d7920012485d1e95&mode=admin"
+                Glide.with(contexto)
+                    .load(URL)
+                    .apply(Util.opcionesGlide(contexto))
+                    .transition(Util.transicion)
+                    .into(holder.imagen_yo)
+                }
             holder.hora_yo.text=item_actual.fecha_hora
             holder.yo.text=item_actual.contenido
             holder.nombre_yo.text=item_actual.nombre_emisor
@@ -82,15 +100,37 @@ class MensajeAdaptador(private val lista_mensajes: MutableList<Mensaje>, last_po
             holder.hora_yo.text=""
             holder.imagen_yo.visibility=View.INVISIBLE
             holder.imagen_otro.visibility=View.VISIBLE
-            val URL:String?=when(item_actual.imagen_emisor){
-                ""->null
-                else->(contexto as? Cliente)?.url_foto_cliente
+            if(item_actual.id_receptor==intent.getStringExtra("id_emisor_taller")){
+                db_ref=FirebaseDatabase.getInstance().reference
+                var taller_actual=Taller(
+                    intent.getStringExtra("id_emisor_taller"),
+                    intent.getStringExtra("nombre_emisor"),
+                    intent.getStringExtra("ciudad_emisor"),
+                    intent.getIntExtra(("fundacion_emisor"),
+                        0),
+                    intent.getStringExtra("url_logo_emisor"),
+                    "",
+                    0f,
+
+                    )
+                val URL:String?=when(taller_actual.url_logo){
+                    ""->null
+                    else->taller_actual.url_logo
+                }
+                Log.d("Url",URL.toString())
+                Glide.with(contexto)
+                    .load(URL)
+                    .apply(Util.opcionesGlide(contexto))
+                    .transition(Util.transicion)
+                    .into(holder.imagen_yo)
+            }else{
+                val URL:String?="https://cloud.appwrite.io/v1/storage/buckets/6759d837002a69ef194d/files/679a82e0003d1cb091c7/view?project=6759d7920012485d1e95&mode=admin"
+                Glide.with(contexto)
+                    .load(URL)
+                    .apply(Util.opcionesGlide(contexto))
+                    .transition(Util.transicion)
+                    .into(holder.imagen_yo)
             }
-            Glide.with(contexto)
-                .load(URL)
-                .apply(Util.opcionesGlide(contexto))
-                .transition(Util.transicion)
-                .into(holder.imagen_otro)
 
             holder.hora_otro.text=item_actual.fecha_hora
             holder.otro.text=item_actual.contenido

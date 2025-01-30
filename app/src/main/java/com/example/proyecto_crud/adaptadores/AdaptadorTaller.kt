@@ -64,17 +64,17 @@ class AdaptadorTaller(private val lista_taller:MutableList<Taller>,last_pos:Int)
         holder.rating.rating=taller_actual.rating!!
 
         holder.boton_foro.setOnClickListener{
-            var db_ref=FirebaseDatabase.getInstance().reference
             val intent = Intent(contexto, ChatActivity::class.java)
             intent.putExtra("nombre_emisor",taller_actual.nombre)
-            intent.putExtra("id_emisor_taller",taller_actual)
+            intent.putExtra("id_emisor_taller",taller_actual.id)
+            intent.putExtra("ciudad_emisor",taller_actual.ciudad)
+            intent.putExtra("fundacion_emisor",taller_actual.fundacion)
+            intent.putExtra("url_logo_emisor",taller_actual.url_logo)
           contexto.startActivity(intent)
-
-
-
-
-
         }
+
+
+
         Log.d("Nombre",taller_actual.nombre.toString())
 
         val URL:String?=when(taller_actual.url_logo){
